@@ -1,5 +1,5 @@
-#ifndef Customer_
-#define Customer_
+#ifndef CUSTOMER_H
+#define CUSTOMER_H
 
 #include <string>
 
@@ -12,7 +12,6 @@ class Customer : public People {
   Item* items;
 
  public:
-  // functions
 };
 
 #endif

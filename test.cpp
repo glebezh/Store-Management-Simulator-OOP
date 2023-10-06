@@ -6,11 +6,12 @@
 #include "Item.h"
 
 int main() {
+  double money = 11;
   int counter = 0;
   int choice = 1;
   int option = 0;
 
-  int* array[10];
+  Item* array[10];
 
   while (choice == 1) {
     std::cout << "Do you wish to buy Produce (Apples, Bananas or Carrots)?"
@@ -26,33 +27,47 @@ int main() {
     }
     if (choice == 1) {
       if (counter == 10) {
+        std::cout << "Inventory Full" << std::endl;
         break;
       };
-      counter = counter + 1;
       std::cout << "Do you wish to buy Apples (1), Bananas (2) or Carrots (3)?"
                 << std::endl;
       cin >> option;
-      if ((option != 1) || (option != 2) || option != 3) {
+      if ((option != 1) && (option != 2) && (option != 3)) {
         std::cout << "Please enter a valid number" << std::endl;
-        std::cout
-            << "Do you wish to buy Apples (1), Bananas (2) or Carrots (3)?"
-            << std::endl;
+        std::cout << "Do you wish to buy Apples (1) Bananas (2) or Carrots (3)?"
+                  << std::endl;
         cin >> option;
       }
       if (option == 1) {
-        new Apple;
         std::cout << "Apple was added" << std::endl;
+        array[counter] = new Apple;
+        money = money - array[counter]->getsellPrice();
       };
       if (option == 2) {
-        new Banana;
         std::cout << "Banana was added" << std::endl;
+        array[counter] = new Banana;
+        money = money - array[counter]->getsellPrice();
       };
       if (option == 3) {
-        new Carrot;
         std::cout << "Carrot was added" << std::endl;
+        array[counter] = new Carrot;
+        money = money - array[counter]->getsellPrice();
       }
+      counter = counter + 1;
+    }
+    if (money < 0) {
+      std::cout << "You have run out of Money" << std::endl;
+      break;
     }
   };
+
+  std::cout << "Produce Bought:" << std::endl;
+  for (int i = 0; i < counter; i++) {
+    std::cout << array[i]->getName() << std::endl;
+  };
+
+  std::cout << "Money Remaining: $" << money << std::endl;
 
   return 0;
 }

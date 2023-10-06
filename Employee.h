@@ -8,8 +8,8 @@
 
 class Employee : public People {
  protected:
-  double wageCost;
-  double tipCost;
+  double wageCost = 15;
+  double tipCost = 2;
 
  private:
   void drawWage(Inventory shop) { shop.setMoney(shop.getMoney() - wageCost); }
