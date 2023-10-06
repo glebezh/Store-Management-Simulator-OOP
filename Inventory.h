@@ -12,22 +12,21 @@ using namespace std;
 
 class Inventory{
     private:
-        Dairy* dairy_products;
-        Dry* dry_products;
-        Produce* produce_products;
+        Item* items;
         double money;
     public:
-        int getDairyItem(string name);
-        int getDryItem(string name);
-        int getProduceItem(string name);
+        //Constructors
+        Inventory();
+        Inventory(Item* _items, double _money);
+
+        //Methods/Functions
         void removeItem(string name);
-        void buyItem(string type, string amount);
+        void buyItem(string type, int amount);
+
         void setMoney(double money_){
             this->money = money_; 
         }
-        double getMoney(){return money;}
-        Inventory();
-        Inventory();
+        double getMoney(){return money;}  
 
 };
 
