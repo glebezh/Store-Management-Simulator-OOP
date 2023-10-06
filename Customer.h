@@ -10,7 +10,13 @@ class Customer: public People{
     protected:
         Item* items;
     public:
-        //functions
+        void checkout(Item* cart, Inventory shop, Store store){
+            double cartPrice = 0
+            for (int i = 0; i<this->getcarryAmount(); i++){
+                cartPrice = cartPrice + cart[i]*.getsellPrice();
+            }
+            shop.setMoney = shop.getMoney + cartPrice + 2*store.getRating();
+        }
 };
 
 #endif

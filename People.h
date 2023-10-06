@@ -11,13 +11,15 @@ class People{
         int maxCarry;
         int carryAmount = 0; 
     public:
-        bool grabItem(Item product){
+        bool grabItem(Item product, Inventory storage){
             if (carryAmount < maxCarry){
                 items[carryAmount] = product;
                 carryAmount++
                 return true;
+                storage.removeItem(product);
             }
             return false;
         }
+        int getcarryAmount(){return carryAmount;}
 };
 #endif
