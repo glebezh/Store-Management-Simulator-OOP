@@ -4,7 +4,6 @@
 #include "Banana.h"
 #include "Carrot.h"
 #include "Item.h"
-#include "Produce.h"
 
 int main() {
   int counter = 0;
@@ -30,6 +29,13 @@ int main() {
       std::cout << "Do you wish to buy Apples (1), Bananas (2) or Carrots (3)?"
                 << std::endl;
       cin >> option;
+      if ((option != 1) || (option != 2) || option != 3) {
+        std::cout << "Please enter a valid number" << std::endl;
+        std::cout
+            << "Do you wish to buy Apples (1), Bananas (2) or Carrots (3)?"
+            << std::endl;
+        cin >> option;
+      }
       if (option == 1) {
         new Apple;
         std::cout << "Apple was added" << std::endl;

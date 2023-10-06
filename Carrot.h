@@ -3,9 +3,9 @@
 
 #include <iostream>
 
-#include "Produce.h"
+#include "Item.h"
 
-class Carrot : public Produce {
+class Carrot : public Item {
  private:
   string name = "Carrot";
   double sellPrice = 1.50;

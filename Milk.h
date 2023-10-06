@@ -1,9 +1,9 @@
 #ifndef MILK_H
 #define MILK_H
 
-#include "Dairy.h"
+#include "Item.h"
 
-class Milk : public Dairy {
+class Milk : public Item {
  private:
   string name = "Milk";
   double sellPrice = 2.00;

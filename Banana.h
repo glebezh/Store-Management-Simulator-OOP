@@ -3,11 +3,11 @@
 
 #include <iostream>
 
-#include "Produce.h"
+#include "Item.h"
 
-class Banana : public Produce {
+class Banana : public Item {
  private:
-  string name = "Apple";
+  string name = "Banana";
   double sellPrice = 1.25;
   double purchasePrice = 0.90;
   bool hasExpiry = false;
