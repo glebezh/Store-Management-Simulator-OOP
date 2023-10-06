@@ -1,7 +1,7 @@
+#ifndef People_
+#define People_
 #include "Item.h"
 #include <string>
-#ifndef People_;
-#define People_;
 using namespace std;
 
 class People{
@@ -20,4 +20,4 @@ class People{
             return false;
         }
 };
-#endif;
+#endif

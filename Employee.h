@@ -11,7 +11,9 @@ class Employee: public People{
         double tipCost:
     private:
         void drawWage(Inventory shop){
-            shop.money = shop.money - wageCost;
+            shop.setMoney(shop.getMoney() - wageCost);
         }
 
 };
+
+#endif

@@ -22,7 +22,10 @@ class Inventory{
         int getProduceItem(string name);
         void removeItem(string name);
         void buyItem(string type, string amount);
-
+        void setMoney(double money_){
+            this->money = money_; 
+        }
+        double getMoney(){return money;}
         Inventory();
         Inventory();
 
