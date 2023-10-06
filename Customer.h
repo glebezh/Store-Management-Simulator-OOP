@@ -2,15 +2,17 @@
 #define Customer_
 
 #include <string>
-#include "People.h"
-#include "Inventory"
-#include "Item.h"
 
-class Customer: public People{
-    protected:
-        Item* items;
-    public:
-        //functions
+#include "Inventory.h"
+#include "Item.h"
+#include "People.h"
+
+class Customer : public People {
+ protected:
+  Item* items;
+
+ public:
+  // functions
 };
 
 #endif

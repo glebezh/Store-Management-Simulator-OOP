@@ -10,7 +10,7 @@ int main() {
   int choice = 1;
   int option = 0;
 
-  int** array[10];
+  int* array[10];
 
   while (choice == 1) {
     std::cout << "Do you wish to buy Produce (Apples, Bananas or Carrots)?"
@@ -25,6 +25,9 @@ int main() {
       cin >> choice;
     }
     if (choice == 1) {
+      if (counter == 10) {
+        break;
+      };
       counter = counter + 1;
       std::cout << "Do you wish to buy Apples (1), Bananas (2) or Carrots (3)?"
                 << std::endl;
