@@ -11,7 +11,7 @@ int main() {
   int choice = 1;
   int option = 0;
 
-  Item* array[10];
+  Item* inventory[10];
 
   while (choice == 1) {
     std::cout << "Do you wish to buy Produce (Apples, Bananas or Carrots)?"
@@ -41,18 +41,18 @@ int main() {
       }
       if (option == 1) {
         std::cout << "Apple was added" << std::endl;
-        array[counter] = new Apple;
-        money = money - array[counter]->getsellPrice();
+        inventory[counter] = new Apple;
+        money = money - inventory[counter]->getsellPrice();
       };
       if (option == 2) {
         std::cout << "Banana was added" << std::endl;
-        array[counter] = new Banana;
-        money = money - array[counter]->getsellPrice();
+        inventory[counter] = new Banana;
+        money = money - inventory[counter]->getsellPrice();
       };
       if (option == 3) {
         std::cout << "Carrot was added" << std::endl;
-        array[counter] = new Carrot;
-        money = money - array[counter]->getsellPrice();
+        inventory[counter] = new Carrot;
+        money = money - inventory[counter]->getsellPrice();
       }
       counter = counter + 1;
     }
@@ -64,7 +64,7 @@ int main() {
 
   std::cout << "Produce Bought:" << std::endl;
   for (int i = 0; i < counter; i++) {
-    std::cout << array[i]->getName() << std::endl;
+    std::cout << inventory[i]->getName() << std::endl;
   };
 
   std::cout << "Money Remaining: $" << money << std::endl;
