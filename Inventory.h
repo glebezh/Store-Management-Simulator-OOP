@@ -6,9 +6,7 @@ using namespace std;
 #include <string>
 #include <iostream>
 
-#include "Dairy.h"
-#include "Produce.h"
-#include "Dry.h"
+#include "Item.h"
 
 class Inventory{
     private:
@@ -22,12 +20,13 @@ class Inventory{
         //Methods/Functions
         void removeItem(string name);
         void buyItem(string type, int amount);
+        void getItems();
 
         void setMoney(double money_){
             this->money = money_; 
         }
-        double getMoney(){return money;}  
-
+        double getMoney(){return money;}
+        
 };
 
 
