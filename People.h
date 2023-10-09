@@ -16,9 +16,11 @@ class People {
   bool grabItem(Item product) {
     if (carryAmount < maxCarry) {
       items[carryAmount] = product;
-      carryAmount++ return true;
+      carryAmount++; 
+      return true;
     }
     return false;
   }
 };
+
 #endif

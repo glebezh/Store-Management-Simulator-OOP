@@ -12,6 +12,14 @@ class Customer : public People {
   Item* items;
 
  public:
+    Customer(){
+        name = "";
+        maxCarry = 0;
+    }
+    Customer(string name, int day){
+        this->name = name;
+        maxCarry = 2*day*0.5;
+    }
 };
 
 #endif
