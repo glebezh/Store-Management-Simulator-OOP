@@ -12,8 +12,8 @@ class Item {
   bool hasExpiry;
 
  public:
-  Item(){};
-  Item(string _name, double _sellPrice, double _purchasePrice, bool _hasExpiry)
+  Item();
+  Item(string _name, double _sellPrice, double _purchasePrice, bool _hasExpiry);
   ~Item(){};
   virtual string getName() { return name; }
   virtual double getsellPrice() { return sellPrice; }

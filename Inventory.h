@@ -20,12 +20,12 @@ class Inventory{
         //Methods/Functions
         void removeItem(string name);
         void buyItem(string type, int amount);
-        void getItems();
+        void getItems(int _size);
 
         void setMoney(double money_){
             this->money = money_; 
-        }
-        double getMoney(){return money;}
+        };
+        double getMoney(){return money;};
         
 };
 
