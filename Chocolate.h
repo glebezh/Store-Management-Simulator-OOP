@@ -8,8 +8,8 @@
 class Chocolate : public Item {
  private:
   string name = "Apple";
-  double sellPrice = 1.25;
-  double purchasePrice = 0.90;
+  double sellPrice = 2.25;
+  double purchasePrice = 1.50;
   bool hasExpiry = false;
   int counter = 0;
 

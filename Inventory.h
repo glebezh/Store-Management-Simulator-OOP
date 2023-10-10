@@ -3,31 +3,30 @@
 
 using namespace std;
 
-#include <string>
 #include <iostream>
+#include <string>
+#include <vector>
 
 #include "Item.h"
 
-class Inventory{
-    private:
-        Item* items;
-        double money;
-    public:
-        //Constructors
-        Inventory();
-        Inventory(Item* _items, double _money);
+class Inventory {
+ private:
+  std::vector<Item*> items;
+  double money;
 
-        //Methods/Functions
-        void removeItem(string name);
-        void buyItem(string type, int amount);
-        void getItems(int _size);
+ public:
+  // Constructors
+  Inventory();
+  Inventory(double _money);
 
-        void setMoney(double money_){
-            this->money = money_; 
-        };
-        double getMoney(){return money;};
-        
+  // Methods/Functions
+  void removeItem(string name);
+  void buyItemProduce();
+//   void buyItemDry();
+  void getItems();
+
+  void setMoney(double money_) { this->money = money_; }
+  double getMoney() { return money; }
 };
-
 
 #endif
