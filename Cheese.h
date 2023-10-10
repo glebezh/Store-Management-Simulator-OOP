@@ -1,29 +1,29 @@
 #ifndef CHEESE_H
 #define CHEESE_H
 
+#include <iostream>
+
 #include "Item.h"
 
-class Cheese : public Item {
- private:
-  string name = "Cheese";
-  double sellPrice = 2.00;
-  double purchasePrice = 1.75;
-  bool hasExpiry = false;
-  int counter = 0;
+class Cheese : public Item{
+  private:
+    int counter;
+    // need something else here?
 
- public:
-  Cheese(){};
-  ~Cheese(){};
-  string getName() { return name; }
-  double getsellPrice() { return sellPrice; }
-  double getpurchasePrice() { return purchasePrice; }
-  bool gethasExpiry() {
-    counter = counter + 1;
-    if (counter == 4) {
-      hasExpiry = true;
+  public:
+    Cheese(): Item("Cheese", 2.00, 1.75, false){
+      counter = 0;
     };
-    return hasExpiry;
-  }
+    ~Cheese(){};
+
+    bool determineExpiry(){
+      counter = counter + 1;
+      if (counter == 3)
+      {
+        hasExpiry = true;
+      };
+      return hasExpiry;
+    }
 };
 
 #endif

@@ -5,27 +5,25 @@
 
 #include "Item.h"
 
-class Carrot : public Item {
- private:
-  string name = "Carrot";
-  double sellPrice = 1.50;
-  double purchasePrice = 1.25;
-  bool hasExpiry = false;
-  int counter = 0;
+class Carrot : public Item{
+  private:
+    int counter;
+    // need something else here?
 
- public:
-  Carrot(){};
-  ~Carrot(){};
-  virtual string getName() { return name; }
-  virtual double getsellPrice() { return sellPrice; }
-  virtual double getpurchasePrice() { return purchasePrice; }
-  virtual bool gethasExpiry() {
-    counter = counter + 1;
-    if (counter == 3) {
-      hasExpiry = true;
+  public:
+    Carrot(): Item("Carrot", 1.5, 1.25, false){
+      counter = 0;
     };
-    return hasExpiry;
-  }
+    ~Carrot(){};
+
+    bool determineExpiry(){
+      counter = counter + 1;
+      if (counter == 3)
+      {
+        hasExpiry = true;
+      };
+      return hasExpiry;
+    }
 };
 
 #endif

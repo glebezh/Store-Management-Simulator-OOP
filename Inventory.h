@@ -16,13 +16,8 @@ class Inventory {
 
  public:
   // Constructors
-  Inventory(){
-    money = NULL;
-  }
-  Inventory(double _money){
-    money = _money;
-  }
-
+  Inventory();
+  Inventory(double _money);
   // Methods/Functions
   void removeItem(string name);
   void buyItemProduce();

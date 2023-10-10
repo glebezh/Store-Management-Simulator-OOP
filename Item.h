@@ -14,7 +14,7 @@ class Item {
  public:
   Item();
   Item(string _name, double _sellPrice, double _purchasePrice, bool _hasExpiry);
-  virtual string getName() { return name; }
+  virtual string getName() { return name; }   // Do we need virtual here?
   virtual double getsellPrice() { return sellPrice; }
   virtual double getpurchasePrice() { return purchasePrice; }
   virtual bool gethasExpiry() { return hasExpiry; }

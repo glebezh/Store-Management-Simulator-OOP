@@ -8,11 +8,19 @@ using namespace std;
 class People {
  protected:
   string name;
-  Item* items = new Item[NULL];
+  Item* items;
   int maxCarry;
-  int carryAmount = 0;
+  int carryAmount;
 
  public:
+  People();
+  People(string _name, Item* items, int _maxCarry, int _carryAmount){
+    name = _name;
+    Item* items = nullptr;
+    maxCarry = _maxCarry;
+    carryAmount = _carryAmount;
+  }
+  
   bool grabItem(Item product) {
     if (carryAmount < maxCarry) {
       items[carryAmount] = product;
