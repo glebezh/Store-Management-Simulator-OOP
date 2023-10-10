@@ -21,7 +21,14 @@ class Store{
     public:
         // Constructors
         Store();
-        Store(string _name, int _days, double _rating, Inventory* _inventory, Customer* _customers, Employee* _employees);
+        Store(string _name, int _days, Inventory* _inventory, Customer* _customers, Employee* _employees){
+            name = _name;
+            days = _days;
+            rating = 1;
+            inventory = _inventory;
+            customers = _customers;
+            employees = _employees;
+        }
 
         // Methods/Functions
         void getInventory();
