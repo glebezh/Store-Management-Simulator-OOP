@@ -8,5 +8,6 @@ int main(){
     Inventory inventory(1000);
     //Store store();
     cout << "You're store begins with " <<inventory.getMoney()<<" dollars"<<endl;
+    
 
 }
