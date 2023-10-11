@@ -2,6 +2,8 @@
 #define EMPLOYEE_H
 
 #include <string>
+
+#include "Inventory.h"
 #include "People.h"
 #include "Inventory.h"
 #include "Store.h"

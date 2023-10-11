@@ -1,10 +1,11 @@
-#ifndef Customer_
-#define Customer_
+#ifndef CUSTOMER_H
+#define CUSTOMER_H
 
 #include <string>
-#include "People.h"
-#include "Inventory"
+
+#include "Inventory.h"
 #include "Item.h"
+#include "People.h"
 
 class Customer: public People{
     protected:

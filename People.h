@@ -1,25 +1,34 @@
 #ifndef People_
 #define People_
-#include "Item.h"
 #include <string>
+
+#include "Item.h"
 using namespace std;
 
-class People{
-    protected:
-        string name;
-        Item* items = new Item[NULL];
-        int maxCarry;
-        int carryAmount = 0; 
-    public:
-        bool grabItem(Item product, Inventory storage){
-            if (carryAmount < maxCarry){
-                items[carryAmount] = product;
-                carryAmount++
-                return true;
-                storage.removeItem(product);
-            }
-            return false;
-        }
-        int getcarryAmount(){return carryAmount;}
+class People {
+ protected:
+  string name;
+  Item* items;
+  int maxCarry;
+  int carryAmount;
+
+ public:
+  People();
+  People(string _name, Item* items, int _maxCarry, int _carryAmount){
+    name = _name;
+    Item* items = nullptr;
+    maxCarry = _maxCarry;
+    carryAmount = _carryAmount;
+  }
+  
+  bool grabItem(Item product) {
+    if (carryAmount < maxCarry) {
+      items[carryAmount] = product;
+      carryAmount++; 
+      return true;
+    }
+    return false;
+  }
 };
+
 #endif
