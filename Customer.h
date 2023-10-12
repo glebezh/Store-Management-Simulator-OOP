@@ -6,23 +6,31 @@
 #include "Inventory.h"
 #include "Item.h"
 #include "People.h"
-#include "Store.h"
-
+using namespace std;
 
 class Customer : public People {
  private:
   double moneySpent = 0;
   int itemCounter = 0;
-  std::string wantedItem1;
-  std::string wantedItem2;
-  std::string wantedItem3;
+  string wantedItem1;
+  string wantedItem2;
+  string wantedItem3;
 
  public:
-  Customer() {}
+  Customer() {
+    name = "";
+    wantedItem1 = "";
+    wantedItem2 = "";
+    wantedItem3 = "";//file:////usr/share/doc/HTML/en-US/index.html
+  }
   Customer(string _name){
     this->name = _name;
+    wantedItem1 = "";
+    wantedItem2 = "";
+    wantedItem3 = "";
   }
   string getName(){return name;}
+
   double getMoneySpent() { return moneySpent; };
 
   void buyFromInventory1(Inventory& inventory) {

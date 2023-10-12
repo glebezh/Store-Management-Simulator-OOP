@@ -1,8 +1,5 @@
 #include "Inventory.h"
 #include <iostream>
-
-#include <iostream>
-
 #include "Apple.h"
 #include "Banana.h"
 #include "Biscuit.h"
@@ -130,7 +127,6 @@ void Inventory::buyItemProduce() {
           money -= cost;
           produceCounter++;
         }
-        delete newItem;
       }
     }
   }
@@ -147,7 +143,6 @@ void Inventory::buyItemProduce() {
 void Inventory::buyItemDry() {
   int choice = 1;
   int option = 0;
-  system("clear");
   while (choice == 1 && money >= 0) {
     if (dryCounter == 5) {
       std::cout << "Maximum Capacity for Dry has been reached." << std::endl;
@@ -227,7 +222,6 @@ void Inventory::buyItemDry() {
 void Inventory::buyItemDairy() {
   int choice = 1;
   int option = 0;
-  system("clear");
   while (choice == 1 && money >= 0) {
     if (dairyCounter == 5) {
       std::cout << "Maximum Capacity for Dairy has been reached." << std::endl;
@@ -249,7 +243,7 @@ void Inventory::buyItemDairy() {
       std::cin >> choice;
     }
     if (choice == 1) {
-      system("clear");
+
       std::cout << "Money Remaining: $" << money << std::endl;
       std::cout << "Do you wish to buy Cheese (1)(-$1.75)(+$2.00), Milk "
                    "(2)(-$1.75)(+$2.25) or "

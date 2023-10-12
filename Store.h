@@ -4,8 +4,8 @@
 using namespace std;
 
 #include <string>
-#include "Inventory.h"
 #include "Customer.h"
+#include "Inventory.h"
 #include "Employee.h"
 #include <iostream>
 
@@ -15,8 +15,8 @@ class Store{
         string name;
         int days;
         double rating;
-        Inventory* inventory;
         Customer* customers;
+        Inventory* inventory;
         Employee* employees;
     public:
         // Constructors
