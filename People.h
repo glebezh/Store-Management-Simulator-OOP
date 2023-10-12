@@ -10,7 +10,7 @@ class Person {
   protected:
     string name;
   public:
-    string getName(){return name};
+    string getName(){return name;};
 
 
 };

@@ -21,8 +21,11 @@ int main(){
     int day = 1;
     
     vector<Customer*> customers;
-    for (int i = 0; i<30; i++){ //get rid of magic value
+    for (int i = 0; i<5; i++){ //get rid of magic value
         customers.push_back(new Customer(names[i]));
+        std::cout << customers[i]->getDesiredItem1();
+        std::cout << customers[i]->getDesiredItem2();
+        std::cout << customers[i]->getDesiredItem3();
     }
 
     vector<Employee*> employees;

@@ -9,6 +9,8 @@
 #include "Random.h"
 using namespace std;
 
+std::vector<std::string> products = {"Apple", "Banana", "Biscuit", "Bread", "Carrot", "Cheese", "Chocolate", "Milk", "Yoghurt"};
+
 class Customer : public Person {
  private:
   double moneySpent;
@@ -26,9 +28,9 @@ class Customer : public Person {
     wantedItem3 = "";        //file:////usr/share/doc/HTML/en-US/index.html
   }
   Customer(string _name):Person(_name){
-    wantedItem1 = ""//Randomly generate here
-    wantedItem2 = "";  // and here
-    wantedItem3 = "";  // and here
+    wantedItem1 = generateRandomItem(products);//Randomly generate here
+    wantedItem2 = generateRandomItem(products);  // and here
+    wantedItem3 = generateRandomItem(products);  // and here
     moneySpent = 0;
     itemCounter = 0;
   }
@@ -158,9 +160,9 @@ class Customer : public Person {
   }
 
   void setName(std::string setName) { name = setName; };
-
-  void setDesiredItem1(std::string itemName) { wantedItem1 = itemName; };
-  void setDesiredItem2(std::string itemName) { wantedItem2 = itemName; };
-  void setDesiredItem3(std::string itemName) { wantedItem3 = itemName; };
+  
+  string getDesiredItem1() { return wantedItem1;};
+  string getDesiredItem2(){ return wantedItem2;};
+  string getDesiredItem3() { return wantedItem3;};
 };
 #endif
