@@ -3,8 +3,10 @@
 #include "Inventory.h"
 
 int main() {
-  Inventory hold(1);
+  Inventory hold(100);
   hold.buyItemProduce();
   hold.buyItemDry();
+  hold.showproduceItems();
+  hold.showdryItems();
   return 0;
 }

@@ -78,24 +78,23 @@ void Inventory::buyItemProduce() {
         } else {
           system("clear");
           std::cout << newItem->getName() << " was added" << std::endl;
-          items.push_back(newItem);
+          produceItems.push_back(newItem);
           money -= cost;
-          counter++;
+          produceCounter++;
         }
       }
     }
   }
 
   std::cout << "Items Bought:" << std::endl;
-  for (int i = 0; i < counter; i++) {
-    std::cout << items[i]->getName() << std::endl;
+  for (int i = 0; i < produceCounter; i++) {
+    std::cout << produceItems[i]->getName() << std::endl;
   }
 
   std::cout << "Money Remaining: $" << money << std::endl;
 }
 
 void Inventory::buyItemDry() {
-  int counter = 0;
   int choice = 1;
   int option = 0;
   system("clear");
@@ -153,18 +152,32 @@ void Inventory::buyItemDry() {
         } else {
           system("clear");
           std::cout << newItem->getName() << " was added" << std::endl;
-          items.push_back(newItem);
+          dryItems.push_back(newItem);
           money -= cost;
-          counter++;
+          dryCounter++;
         }
       }
     }
   }
 
   std::cout << "Items Bought:" << std::endl;
-  for (int i = 0; i < counter; i++) {
-    std::cout << items[i]->getName() << std::endl;
+  for (int i = 0; i < dryCounter; i++) {
+    std::cout << dryItems[i]->getName() << std::endl;
   }
 
   std::cout << "Money Remaining: $" << money << std::endl;
+}
+
+void Inventory::showproduceItems() {
+  std::cout << "Produce Items:" << std::endl;
+  for (int i = 0; i < produceCounter; i++) {
+    std::cout << produceItems[i]->getName() << std::endl;
+  }
+}
+
+void Inventory::showdryItems() {
+  std::cout << "Dry Items:" << std::endl;
+  for (int i = 0; i < dryCounter; i++) {
+    std::cout << dryItems[i]->getName() << std::endl;
+  }
 }

@@ -11,8 +11,11 @@ using namespace std;
 
 class Inventory {
  private:
-  std::vector<Item*> items;
+  std::vector<Item*> produceItems;
+  std::vector<Item*> dryItems;
   double money;
+  int produceCounter = 0;
+  int dryCounter = 0;
 
  public:
   // Constructors
@@ -23,7 +26,8 @@ class Inventory {
   void removeItem(string name);
   void buyItemProduce();
   void buyItemDry();
-  void getItems();
+  void showproduceItems();
+  void showdryItems();
 
   void setMoney(double money_) { this->money = money_; }
   double getMoney() { return money; }
