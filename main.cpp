@@ -11,13 +11,13 @@ int main(){
     "Ruby","Robert","Kai","Roy","Sevyn","Madden","Dalayza","Felipe","Magnolia","Collin","Lennox","Braylen","Winnie","Connor"}; 
     int day = 1;
     Inventory inventory(1000);
-    //Customer customers = new Customer[30];
-    //for (int i = 0; i<30; i++){
-        //customers[i] = Customer(names[i]);
-   // }
-   // for (int k = 0; k<30; k++){
-       // cout<< customers[k].getName()<<endl;
-    //}
+    customers = new Customer[30];
+    for (int i = 0; i<30; i++){
+        customers[i] = Customer(names[i]);
+    }
+    for (int k = 0; k<30; k++){
+        cout<< customers[k].getName()<<endl;
+    }
     //Store store();
     cout << "You're store begins with " <<inventory.getMoney()<<" dollars"<<endl;
     
