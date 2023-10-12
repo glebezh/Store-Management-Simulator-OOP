@@ -19,7 +19,10 @@ class Customer : public People {
 
  public:
   Customer() {}
-
+  Customer(string _name){
+    this->name = _name;
+  }
+  string getName(){return name;}
   double getMoneySpent() { return moneySpent; };
 
   void buyFromInventory1(Inventory& inventory) {

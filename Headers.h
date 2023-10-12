@@ -12,3 +12,4 @@
 #include"Milk.h"
 #include"People.h"
 #include"Yoghurt.h"
+#include"Store.h"

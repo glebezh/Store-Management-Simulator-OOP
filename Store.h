@@ -11,7 +11,7 @@ using namespace std;
 
 
 class Store{
-    private:
+    protected:
         string name;
         int days;
         double rating;

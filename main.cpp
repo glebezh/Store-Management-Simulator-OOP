@@ -2,6 +2,7 @@
 #include<iostream>
 using namespace std;
 #include <string>
+#include <vector>
 
 int main(){
     string names[60] = {"Ila", "Gunner","Stevie","Kevin","Cali","Drew","Paris","Roman","Giselle",
@@ -11,13 +12,13 @@ int main(){
     "Ruby","Robert","Kai","Roy","Sevyn","Madden","Dalayza","Felipe","Magnolia","Collin","Lennox","Braylen","Winnie","Connor"}; 
     int day = 1;
     Inventory inventory(1000);
-    customers = new Customer[30];
+    vector<Customer*> customers;
     for (int i = 0; i<30; i++){
-        customers[i] = Customer(names[i]);
+        customers[i] = new Customer(names[i]);
     }
-    for (int k = 0; k<30; k++){
-        cout<< customers[k].getName()<<endl;
-    }
+    //for (int k = 0; k<30; k++){
+        //cout<< customers*[k].getName()<<endl;
+    //}
     //Store store();
     cout << "You're store begins with " <<inventory.getMoney()<<" dollars"<<endl;
     
