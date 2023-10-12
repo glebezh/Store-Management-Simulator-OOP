@@ -34,8 +34,16 @@ class Inventory {
   void showdryItems();
   void showdairyItems();
 
-  void setMoney(double money_) { this->money = money_; }
-  double getMoney() { return money; }
+  void setMoney(double money_) { this->money = money_; };
+  double getMoney() { return money; };
+
+  int getProduceCounter() { return produceCounter; };
+  int getDryCounter() { return dryCounter; };
+  int getDairyCounter() { return dairyCounter; };
+
+  std::vector<Item*> getProduceItems() { return produceItems; };
+  std::vector<Item*> getDryItems() { return dryItems; };
+  std::vector<Item*> getDairyItems() { return dairyItems; };
 };
 
 #endif

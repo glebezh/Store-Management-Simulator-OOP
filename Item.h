@@ -16,9 +16,9 @@ class Item {
   Item(string _name, double _sellPrice, double _purchasePrice, bool _hasExpiry);
   ~Item(){};
   virtual string getName() { return name; }
-  virtual double getsellPrice() { return sellPrice; }
-  virtual double getpurchasePrice() { return purchasePrice; }
-  virtual bool gethasExpiry() { return hasExpiry; }
+  virtual double getSellPrice() { return sellPrice; }
+  virtual double getPurchasePrice() { return purchasePrice; }
+  virtual bool getHasExpiry() { return hasExpiry; }
 };
 
 #endif
