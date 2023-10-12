@@ -1,11 +1,14 @@
-#include"Headers.h"
-#include<iostream>
+#include <iostream>
+
+#include "Headers.h"
 using namespace std;
 #include <string>
 #include <vector>
 
 
 int main(){
+
+    string storeName = "";
 
     double starting_money = 100.0;
     Inventory inventory(starting_money);
@@ -27,6 +30,9 @@ int main(){
         employees.push_back(new Employee(names[60-i-1]));
     }
 
+    cout << "Welcome Please Enter Store Name:" << endl;
+    cin >> storeName;
+
     // Store store;
     cout << "Your store begins with " <<inventory.getMoney()<<" dollars"<<endl;
 
@@ -36,5 +42,7 @@ int main(){
 
     inventory.removeItem("Apple");
     inventory.showproduceItems();
+
+
 
 }

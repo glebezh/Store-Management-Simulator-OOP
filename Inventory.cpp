@@ -1,5 +1,7 @@
 #include "Inventory.h"
+
 #include <iostream>
+
 
 #include "Apple.h"
 #include "Banana.h"
@@ -24,12 +26,10 @@ void Inventory::removeItem(string name) {
       std::swap(produceItems[i], produceItems[produceCounter - 1]);
       produceItems.pop_back();
       produceCounter--;
-      std::cout << name << " was removed" << std::endl;
-      std::cout << "Enter 0 to continue" << std::endl;
-      std::cin >> placeholder; // Do we need this here?
       break;
     }
   }
+
   for (int i = 0; i < dryCounter; i++) {
     if (dryItems[i]->getName() == name) {
       delete dryItems[i];
@@ -37,12 +37,10 @@ void Inventory::removeItem(string name) {
       std::swap(dryItems[i], dryItems[dryCounter - 1]);
       dryItems.pop_back();
       dryCounter--;
-      std::cout << name << " was removed" << std::endl;
-      std::cout << "Enter 0 to continue" << std::endl;
-      std::cin >> placeholder;
       break;
     }
   }
+
   for (int i = 0; i < dairyCounter; i++) {
     if (dairyItems[i]->getName() == name) {
       delete dairyItems[i];
@@ -50,21 +48,16 @@ void Inventory::removeItem(string name) {
       std::swap(dairyItems[i], dairyItems[dairyCounter - 1]);
       dairyItems.pop_back();
       dairyCounter--;
-      std::cout << name << " was removed" << std::endl;
-      std::cout << "Enter 0 to continue" << std::endl;
-      std::cin >> placeholder;
       break;
     }
   }
 }
 
 void Inventory::buyItemProduce() {
-  int counter = 0;
   int choice = 1;
   int option = 0;
-//   system("clear");
   while (choice == 1 && money >= 0) {
-    if (produceCounter == 5) {
+    if (produceCounter == 10) {
       std::cout << "Maximum Capacity for Produce has been reached."
                 << std::endl;
       std::cout << "Enter 0 to continue" << std::endl;
@@ -136,16 +129,14 @@ void Inventory::buyItemProduce() {
   for (int i = 0; i < produceCounter; i++) {
     std::cout << produceItems[i]->getName() << std::endl;
   }
-
-  std::cout << "Money Remaining: $" << money << std::endl;
-
+  std::cout << " " << std::endl;
 }
 
 void Inventory::buyItemDry() {
   int choice = 1;
   int option = 0;
   while (choice == 1 && money >= 0) {
-    if (dryCounter == 5) {
+    if (dryCounter == 10) {
       std::cout << "Maximum Capacity for Dry has been reached." << std::endl;
       std::cout << "Enter 0 to continue" << std::endl;
       std::cin >> choice;
@@ -212,15 +203,14 @@ void Inventory::buyItemDry() {
   for (int i = 0; i < dryCounter; i++) {
     std::cout << dryItems[i]->getName() << std::endl;
   }
-
-  std::cout << "Money Remaining: $" << money << std::endl;
+  std::cout << " " << std::endl;
 }
 
 void Inventory::buyItemDairy() {
   int choice = 1;
   int option = 0;
   while (choice == 1 && money >= 0) {
-    if (dairyCounter == 5) {
+    if (dairyCounter == 10) {
       std::cout << "Maximum Capacity for Dairy has been reached." << std::endl;
       std::cout << "Enter 0 to continue" << std::endl;
       std::cin >> choice;
@@ -240,7 +230,6 @@ void Inventory::buyItemDairy() {
       std::cin >> choice;
     }
     if (choice == 1) {
-
       std::cout << "Money Remaining: $" << money << std::endl;
       std::cout << "Do you wish to buy Cheese (1)(-$1.75)(+$2.00), Milk "
                    "(2)(-$1.75)(+$2.25) or "
@@ -287,8 +276,7 @@ void Inventory::buyItemDairy() {
   for (int i = 0; i < dairyCounter; i++) {
     std::cout << dairyItems[i]->getName() << std::endl;
   }
-
-  std::cout << "Money Remaining: $" << money << std::endl;
+  std::cout << " " << std::endl;
 }
 
 void Inventory::showproduceItems() {
@@ -310,4 +298,54 @@ void Inventory::showdairyItems() {
   for (int i = 0; i < dairyCounter; i++) {
     std::cout << dairyItems[i]->getName() << std::endl;
   }
+}
+
+int Inventory::checkProduceExpiry() {
+  int counter = 0;
+  for (int i = produceCounter - 1; i >= 0; i--) {
+    produceItems[i]->determineExpiry();
+    if (produceItems[i]->getExpired() == true) {
+      delete produceItems[i];
+      produceItems[i] = nullptr;
+      std::swap(produceItems[i], produceItems[produceCounter - 1]);
+      produceItems.pop_back();
+      produceCounter--;
+      counter = counter + 1;
+    }
+  };
+  return counter;
+}
+
+int Inventory::checkDryExpiry() {
+  int counter = 0;
+  for (int i = dryCounter - 1; i >= 0; i--) {
+    dryItems[i]->determineExpiry();
+    if (dryItems[i]->getExpired() == true) {
+      delete dryItems[i];
+      dryItems[i] = nullptr;
+      std::swap(dryItems[i], dryItems[dryCounter - 1]);
+      dryItems.pop_back();
+      dryCounter--;
+
+      counter = counter + 1;
+    }
+  };
+  return counter;
+}
+
+int Inventory::checkDairyExpiry() {
+  int counter = 0;
+  for (int i = dairyCounter - 1; i >= 0; i--) {
+    dairyItems[i]->determineExpiry();
+    if (dairyItems[i]->getExpired() == true) {
+      delete dairyItems[i];
+      dairyItems[i] = nullptr;
+      std::swap(dairyItems[i], dairyItems[dairyCounter - 1]);
+      dairyItems.pop_back();
+      dairyCounter--;
+
+      counter = counter + 1;
+    }
+  };
+  return counter;
 }

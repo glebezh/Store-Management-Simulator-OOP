@@ -18,7 +18,6 @@ class Inventory {
   int produceCounter = 0;
   int dryCounter = 0;
   int dairyCounter = 0;
-  int placeholder = 0;
 
  public:
   // Constructors
@@ -43,6 +42,10 @@ class Inventory {
   std::vector<Item*> getProduceItems() { return produceItems; };
   std::vector<Item*> getDryItems() { return dryItems; };
   std::vector<Item*> getDairyItems() { return dairyItems; };
+
+  int checkProduceExpiry();
+  int checkDryExpiry();
+  int checkDairyExpiry();
 };
 
 #endif
