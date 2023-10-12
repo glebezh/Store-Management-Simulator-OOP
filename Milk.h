@@ -6,7 +6,7 @@
 class Milk : public Item {
  private:
   string name = "Milk";
-  double sellPrice = 2.00;
+  double sellPrice = 2.25;
   double purchasePrice = 1.75;
   bool hasExpiry = false;
   int counter = 0;

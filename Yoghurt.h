@@ -6,8 +6,8 @@
 class Yoghurt : public Item {
  private:
   string name = "Yoghurt";
-  double sellPrice = 2.00;
-  double purchasePrice = 1.75;
+  double sellPrice = 2.50;
+  double purchasePrice = 1.50;
   bool hasExpiry = false;
   int counter = 0;
 

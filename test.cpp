@@ -5,8 +5,10 @@
 int main() {
   Inventory hold(100);
   hold.buyItemProduce();
-  hold.buyItemDry();
   hold.showproduceItems();
-  hold.showdryItems();
+  hold.removeItem("Apple");
+  hold.showproduceItems();
+  hold.buyItemProduce();
+  hold.showproduceItems();
   return 0;
 }
