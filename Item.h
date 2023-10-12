@@ -10,6 +10,7 @@ class Item {
   double sellPrice;
   double purchasePrice;
   bool hasExpiry;
+  int counter = 0;
 
  public:
   Item();
@@ -19,6 +20,13 @@ class Item {
   virtual double getSellPrice() { return sellPrice; }
   virtual double getPurchasePrice() { return purchasePrice; }
   virtual bool getHasExpiry() { return hasExpiry; }
+  virtual bool determineExpiry() {
+    counter = counter + 1;
+    if (counter == 3) {
+      hasExpiry = true;
+    };
+    return hasExpiry;
+  }
 };
 
 #endif
