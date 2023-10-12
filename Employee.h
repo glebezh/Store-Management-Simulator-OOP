@@ -13,7 +13,8 @@ class Employee : public People {
 
  private:
   Employee(string Ename) { name = Ename; };
-  Employee() void drawWage(Inventory shop) {
+  Employee(); 
+  void drawWage(Inventory shop) {
     shop.setMoney(shop.getMoney() - wageCost);
   }
 };

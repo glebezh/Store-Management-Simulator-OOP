@@ -7,8 +7,11 @@
 
 class Banana : public Item{
   private:
-    int counter;
-    // need something else here?
+    double sellPrice = 2.25;
+    double purchasePrice = 1.50;
+    bool hasExpiry = true;
+    int counter = 0;
+    int expiry = 4;
 
   public:
     Banana(): Item("Banana", 1.25, 0.90, false){

@@ -7,8 +7,11 @@
 
 class Biscuit : public Item{
   private:
-    int counter;
-    // need something else here?
+    double sellPrice = 2.25;
+    double purchasePrice = 1.50;
+    bool hasExpiry = false;
+    int counter = 0;
+    
 
   public:
     Biscuit(): Item("Biscuit", 1.25, 0.90, false){

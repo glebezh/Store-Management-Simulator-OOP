@@ -8,8 +8,8 @@ class Yoghurt : public Item {
   string name = "Yoghurt";
   double sellPrice = 2.50;
   double purchasePrice = 1.50;
-  bool hasExpiry = false;
-  int counter = 0;
+  bool hasExpiry = true;
+  int counter = 10;
 
  public:
   Yoghurt(){};

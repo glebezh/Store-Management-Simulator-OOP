@@ -9,9 +9,9 @@ class Chocolate : public Item {
  private:
   string name = "Chocolate";
   double sellPrice = 2.25;
-  double purchasePrice = 1.50;
-  bool hasExpiry = false;
-  int counter = 0;
+    double purchasePrice = 1.50;
+    bool hasExpiry = false;
+    int counter = 0;
 
  public:
   Chocolate(){};
