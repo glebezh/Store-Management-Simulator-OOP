@@ -9,16 +9,24 @@ class Item {
   string name;
   double sellPrice;
   double purchasePrice;
-  bool hasExpiry;
+  bool expired;
+  int counter;
 
  public:
   Item(){};
-  Item(string _name, double _sellPrice, double _purchasePrice, bool _hasExpiry);
+  Item(string _name, double _sellPrice, double _purchasePrice, bool _expired, int _counter);
   ~Item(){};
-  virtual string getName() { return name; }
-  virtual double getSellPrice() { return sellPrice; }
-  virtual double getPurchasePrice() { return purchasePrice; }
-  virtual bool getHasExpiry() { return hasExpiry; }
+  string getName() { return name; }
+  double getSellPrice() { return sellPrice; }
+  double getPurchasePrice() { return purchasePrice; }
+  bool getExpired() { return expired; }
+  virtual bool determineExpiry(){
+      if (counter == 3){
+        expired = true;
+      };
+      return expired;
+  }
+
 };
 
 #endif

@@ -1,28 +1,22 @@
 #ifndef YOGHURT_H
 #define YOGHURT_H
 
+#include <iostream>
+
 #include "Item.h"
 
-class Yoghurt : public Item {
- private:
-  string name = "Yoghurt";
-  double sellPrice = 2.50;
-  double purchasePrice = 1.50;
-  bool hasExpiry = true;
-  int counter = 10;
-
- public:
-  Yoghurt(){};
-  ~Yoghurt(){};
-  string getName() { return name; }
-  double getsellPrice() { return sellPrice; }
-  double getpurchasePrice() { return purchasePrice; }
-  bool gethasExpiry() {
-    counter = counter + 1;
-    if (counter == 4) {
-      hasExpiry = true;
+class Yoghurt : public Item{
+  private:
+  public:
+    Yoghurt(): Item("Yoghurt", 3, 2, false, 0){
     };
-    return hasExpiry;
+    ~Yoghurt(){};
+
+    bool determineExpiry() override{
+      if (counter == 4){
+        expired = true;
+      };
+      return expired;
   }
 };
 

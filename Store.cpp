@@ -1,4 +1,7 @@
 #include "Store.h"
+#include "Inventory.h"
+#include "Customer.h"
+#include "Employee.h"
 #include <iostream>
 
 using namespace std;
@@ -21,17 +24,11 @@ Store::Store(string _name, int _days, double _rating, Inventory* _inventory, Cus
     employees = _employees;
 }
 
-void Store::getInventory(){
-    int length = sizeof(inventory)/sizeof(employees[0]);
-    for (int i = 0; i < length; i++){
-        std::cout << inventory[i] << std::endl;  ------>> // GET NAME OF EMPLOYEE FROM CLASS
-    }
-}
 
 void Store::getCustomers(){
     int length = sizeof(customers)/sizeof(customers[0]);
     for (int i = 0; i < length; i++){
-        std::cout << customers[i] << std::endl;  ------>> // GET NAME OF EMPLOYEE FROM CLASS
+        std::cout << customers[i].<< std::endl;  ------>> // GET NAME OF EMPLOYEE FROM CLASS
     }
 }
 

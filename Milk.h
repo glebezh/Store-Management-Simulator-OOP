@@ -1,28 +1,22 @@
 #ifndef MILK_H
 #define MILK_H
 
+#include <iostream>
+
 #include "Item.h"
 
-class Milk : public Item {
- private:
-  string name = "Milk";
-  double sellPrice = 2.25;
-  double purchasePrice = 1.75;
-  bool hasExpiry = true;
-  int counter = 5;
-
- public:
-  Milk(){};
-  ~Milk(){};
-  string getName() { return name; }
-  double getsellPrice() { return sellPrice; }
-  double getpurchasePrice() { return purchasePrice; }
-  bool gethasExpiry() {
-    counter = counter + 1;
-    if (counter == 4) {
-      hasExpiry = true;
+class Milk : public Item{
+  private:
+  public:
+    Milk(): Item("Milk", 2, 1.5, false, 0){
     };
-    return hasExpiry;
+    ~Milk(){};
+
+    bool determineExpiry() override{
+      if (counter == 5){
+        expired = true;
+      };
+      return expired;
   }
 };
 

@@ -7,26 +7,17 @@
 
 class Bread : public Item{
   private:
-    double sellPrice = 1;
-    double purchasePrice = 0.75;
-    bool hasExpiry = true;
-    int counter = 0;
-    int expiry = 5;
-
   public:
-    Bread(): Item("Bread", 1.25, 0.90, false){
-      counter = 0;
+    Bread(): Item("Bread", 1.25, 0.90, false, 0){
     };
     ~Bread(){};
 
-    bool determineExpiry(){
-      counter = counter + 1;
-      if (counter == 7)
-      {
-        hasExpiry = true;
+    bool determineExpiry() override{
+      if (counter == 7){
+        expired = true;
       };
-      return hasExpiry;
-    }
+      return expired;
+  }
 };
 
 #endif

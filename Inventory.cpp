@@ -1,8 +1,6 @@
 #include "Inventory.h"
 #include <iostream>
 
-#include <iostream>
-
 #include "Apple.h"
 #include "Banana.h"
 #include "Biscuit.h"
@@ -108,13 +106,13 @@ void Inventory::buyItemProduce() {
         double cost = 0;
         Item* newItem = nullptr;
         if (option == 1) {
-          cost = 0.75;
+          //cost = 0.75;
           newItem = new Apple;
         } else if (option == 2) {
-          cost = 0.90;
+          //cost = 0.90;
           newItem = new Banana;
         } else if (option == 3) {
-          cost = 1.25;
+          //cost = 1.25;
           newItem = new Carrot;
         }
 
@@ -127,10 +125,10 @@ void Inventory::buyItemProduce() {
           system("clear");
           std::cout << newItem->getName() << " was added" << std::endl;
           produceItems.push_back(newItem);
-          money -= cost;
+          //money -= cost; 
+          money -= newItem->getPurchasePrice();
           produceCounter++;
         }
-        delete newItem;
       }
     }
   }
