@@ -5,24 +5,34 @@
 
 #include "Inventory.h"
 #include "Item.h"
-#include "People.h"
-#include "Store.h"
+#include "Person.h"
+#include "Random.h"
+using namespace std;
 
-
-class Customer : public People {
+class Customer : public Person {
  private:
-  double moneySpent = 0;
-  int itemCounter = 0;
-  std::string wantedItem1;
-  std::string wantedItem2;
-  std::string wantedItem3;
+  double moneySpent;
+  int itemCounter;
+  string wantedItem1;
+  string wantedItem2;
+  string wantedItem3;
 
  public:
-  Customer() {}
-  Customer(string _name){
-    this->name = _name;
+  Customer() {
+    name = "";
+    wantedItem1 = "";
+    wantedItem2 = "";
+    wantedItem3 = "";        //file:////usr/share/doc/HTML/en-US/index.html
+  }
+  Customer(string _name):Person(_name){
+    wantedItem1 = ""; //Randomly generate here
+    wantedItem2 = "";  // and here
+    wantedItem3 = "";  // and here
+    moneySpent = 0;
+    itemCounter = 0;
   }
   string getName(){return name;}
+
   double getMoneySpent() { return moneySpent; };
 
   void buyFromInventory1(Inventory& inventory) {

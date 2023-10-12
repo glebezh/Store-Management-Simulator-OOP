@@ -13,7 +13,7 @@ class Item {
   int counter;
 
  public:
-  Item(){};
+  Item();
   Item(string _name, double _sellPrice, double _purchasePrice, bool _expired, int _counter);
   ~Item(){};
   string getName() { return name; }

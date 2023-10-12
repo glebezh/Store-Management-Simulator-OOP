@@ -4,18 +4,21 @@
 #include <string>
 
 #include "Inventory.h"
-#include "People.h"
+#include "Person.h"
 
-class Employee : public People {
- protected:
-  double wageCost = 50;
-  double tipCost = 2;
-
+class Employee : public Person {
  private:
-  Employee(string Ename) { name = Ename; };
-  Employee(); 
-  void drawWage(Inventory shop) {
-    shop.setMoney(shop.getMoney() - wageCost);
+  double wageCost;
+  double tipCost;
+
+ public:
+  Employee(){};
+  Employee(string _name):Person(_name){
+     wageCost = 50;
+     tipCost = 2;
+  };
+  void drawWage(Inventory shop){
+    shop.setMoney(shop.getMoney() - wageCost - tipCost);
   }
 };
 
