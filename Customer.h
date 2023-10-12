@@ -6,6 +6,7 @@
 #include "Inventory.h"
 #include "Item.h"
 #include "People.h"
+#include "Store.h"
 
 class Customer: public People{
     protected:
@@ -14,7 +15,7 @@ class Customer: public People{
     Customer(){
         maxCarry = 0;
         items = new Item[maxCarry];
-        name = NULL;
+        name = "NULL";
         }
     Customer(string name){
         maxCarry = 3 + (rand() %7);
@@ -22,14 +23,14 @@ class Customer: public People{
         this->name = name;
     
     }
-        void checkout(Item* cart, Inventory shop, Store store){
-            double cartPrice = 0
-            for (int i = 0; i<this->getcarryAmount(); i++){
-                cartPrice = cartPrice + cart[i]*.getsellPrice();
-            }
-            shop.setMoney = shop.getMoney + cartPrice + 2*store.getRating();
+    void checkout(Item* cart, Inventory shop, Store store){
+        double cartPrice = 0;
+        for (int i = 0; i<carryAmount; i++){
+            cartPrice = cartPrice + cart[i].getsellPrice();
         }
-        ~Customer(){delete items[]}
+        shop.setMoney(shop.getMoney() + cartPrice + 2*store.getRating());
+        }
+    ~Customer(){delete items;}
 };
 
 #endif

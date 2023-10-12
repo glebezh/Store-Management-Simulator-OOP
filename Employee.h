@@ -14,18 +14,18 @@ class Employee: public People{
         double tipCost;
     public:
         Employee(){
-            name = NULL
+            name = "";
             wageCost = 0;
-            tipcost = 0;
-            maxCarry = NULL
-            carryAmount = NULL
+            tipCost = 0;
+            maxCarry = 0;
+            carryAmount = 0;
         }
         Employee(string name, Store shop){
             this->name = name;
             wageCost = 5 + (rand() %15);
             tipCost =  shop.getRating();
-            maxCarry = NULL;
-            carryAmount = NULL;
+            maxCarry = 0;
+            carryAmount = 0;
             }
         void drawWage(Inventory shop){
             shop.setMoney(shop.getMoney() - wageCost);

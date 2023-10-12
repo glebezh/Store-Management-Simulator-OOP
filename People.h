@@ -16,7 +16,7 @@ class People {
   People();
   People(string _name, Item* items, int _maxCarry, int _carryAmount){
     name = _name;
-    Item* items = nullptr;
+    items = nullptr;
     maxCarry = _maxCarry;
     carryAmount = _carryAmount;
   }
