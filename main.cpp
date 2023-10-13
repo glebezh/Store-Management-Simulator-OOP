@@ -12,14 +12,22 @@ int main(){
     string storeName = "";
     bool load_save_choice = false;
 
-    double starting_money = 100.0;
-    Inventory inventory(starting_money);
+  double starting_money = 100.0;
+  Inventory inventory(starting_money);
 
-    string names[60] = {"Ila", "Gunner","Stevie","Kevin","Cali","Drew","Paris","Roman","Giselle",
-    "Uriel","Magnolia","Orion","Elena","Kairo","Aubriella","Cash","Grace","Keegan","Mary","Elliot","Denver",
-    "Alex","Saige","Kamryn","Rayne","Harlem","Mya","Isaiah","Sophia","Cyrus","Katherine","Finn","Leila",
-    "John","Mina","Joel","Anahi","Corey","Amayah","Archie","Cadence","Rex","Ainhoa","Kylan","Melina","Jacoby",
-    "Ruby","Robert","Kai","Roy","Sevyn","Madden","Dalayza","Felipe","Madeline","Collin","Lennox","Braylen","Winnie","Connor"};
+    std::vector<std::string> names = {
+        "Ila",      "Gunner", "Stevie",    "Kevin",   "Cali",     "Drew",
+        "Paris",    "Roman",  "Giselle",   "Uriel",   "Magnolia", "Orion",
+        "Elena",    "Kairo",  "Aubriella", "Cash",    "Grace",    "Keegan",
+        "Mary",     "Elliot", "Denver",    "Alex",    "Saige",    "Kamryn",
+        "Rayne",    "Harlem", "Mya",       "Isaiah",  "Sophia",   "Cyrus",
+        "Katherine", "Finn",   "Leila",     "John",    "Mina",     "Joel",
+        "Anahi",     "Corey",  "Amayah",    "Archie",  "Cadence",  "Rex",
+        "Ainhoa",    "Kylan",  "Melina",    "Jacoby",  "Ruby",     "Robert",
+        "Kai",       "Roy",    "Sevyn",     "Madden",  "Dalayza",  "Felipe",
+        "Madeline",  "Collin", "Lennox",    "Braylen", "Winnie",   "Connor"
+    };
+
     //load call happens here, if statement and if not we create a fresh inventory
     // only inventory and store values matter, we can generate fresh customers and employees every time
 
@@ -51,16 +59,20 @@ int main(){
         std::cout << "Day:" << day << std::endl;
         cout << "Your store begins with " <<inventory.getMoney()<<" dollars"<<endl;
 
+        
+
         vector<Customer*> customers;
         int number_customers = generateRandom(5, 10);
         for (int i = 0; i<number_customers; i++){ //get rid of magic value
-            customers.push_back(new Customer(names[i]));
+            string name = names[generateRandom(0, names.size() - 1)];
+            customers.push_back(new Customer(name));
         }
 
         vector<Employee*> employees;
         int number_employees = generateRandom(5, 10);
         for (int i = 0; i<number_employees; i++){
-            employees.push_back(new Employee(names[60-i-1]));
+            string name = names[generateRandom(0, names.size() - 1)];
+            employees.push_back(new Employee(name));
         }
 
         inventory.buyItemProduce();

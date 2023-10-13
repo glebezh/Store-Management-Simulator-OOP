@@ -5,8 +5,7 @@
 
 #include "Inventory.h"
 #include "Person.h"
-
-using namespace std;
+#include "Random.h"
 
 class Employee : public Person {
  private:
@@ -27,9 +26,22 @@ class Employee : public Person {
   double gettipCost(){return tipCost;}
 
 
+  void setName() {
+    std::vector<std::string> names = {
+        "Ila",      "Gunner", "Stevie",    "Kevin",   "Cali",     "Drew",
+        "Paris",    "Roman",  "Giselle",   "Uriel",   "Magnolia", "Orion",
+        "Elena",    "Kairo",  "Aubriella", "Cash",    "Grace",    "Keegan",
+        "Mary",     "Elliot", "Denver",    "Alex",    "Saige",    "Kamryn",
+        "Rayne",    "Harlem", "Mya",       "Isaiah",  "Sophia",   "Cyrus",
+        "Katherine", "Finn",   "Leila",     "John",    "Mina",     "Joel",
+        "Anahi",     "Corey",  "Amayah",    "Archie",  "Cadence",  "Rex",
+        "Ainhoa",    "Kylan",  "Melina",    "Jacoby",  "Ruby",     "Robert",
+        "Kai",       "Roy",    "Sevyn",     "Madden",  "Dalayza",  "Felipe",
+        "Madeline",  "Collin", "Lennox",    "Braylen", "Winnie",   "Connor"};
 
-
-
+    name = (names[generateRandom(0, names.size() - 1)]);
+    ;
+  }
 };
 
 #endif
