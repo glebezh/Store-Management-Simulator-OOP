@@ -15,7 +15,6 @@
 #include "Milk.h"
 #include "Person.h"
 #include "Yoghurt.h"
-#include "Store.h"
 #include "Random.h"
 
 

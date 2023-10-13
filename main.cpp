@@ -1,13 +1,14 @@
 #include <iostream>
-
-#include "Headers.h"
-using namespace std;
 #include <string>
 #include <vector>
-extern void saveGame(Inventory inven);
+#include "Headers.h"
+using namespace std;
+
+extern void saveGame(Inventory inven, int days, double rating, string name);
 
 int main(){
-
+    int days = 0;
+    double rating = 3;
     string storeName = "";
 
     double starting_money = 100.0;
@@ -22,15 +23,12 @@ int main(){
     // only inventory and store values matter, we can generate fresh customers and employees every time
 
     
-    int day = 1;
-    
     vector<Customer*> customers;
     for (int i = 0; i<5; i++){ //get rid of magic value
         customers.push_back(new Customer(names[i]));
-    std::cout << customers[i]->getDesiredItem1();
-        std::cout << customers[i]->getDesiredItem2();
-        std::cout << customers[i]->getDesiredItem3();
     }
+    cout << "Your store begins with " <<inventory.getMoney()<<" dollars"<<endl;
+
 
     vector<Employee*> employees;
     for (int i = 0; i<30; i++){
@@ -39,17 +37,14 @@ int main(){
 
     cout << "Welcome Please Enter Store Name:" << endl;
     cin >> storeName;
-
-    // Store store;
     cout << "Your store begins with " <<inventory.getMoney()<<" dollars"<<endl;
 
     inventory.buyItemProduce();
     inventory.buyItemDairy();
     inventory.buyItemDry();
-    saveGame(inventory);
+    saveGame(inventory, days, rating, storeName);
     inventory.removeItem("Apple");
     inventory.showproduceItems();
-
+    }
     
 
-}
