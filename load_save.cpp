@@ -1,9 +1,13 @@
+
 #include "Inventory.h"
 #include <fstream>
 using namespace std;
 ofstream myfile;
-void saveGame(Inventory inven){
+void saveGame(Inventory inven, int days, double rating, string name){
     myfile.open("save.txt");
+    myfile << name<<endl;
+    myfile << days<<endl;
+    myfile << rating<<endl;
     myfile << inven.getMoney()<<endl;
 
     //saving produce
@@ -80,6 +84,8 @@ void saveGame(Inventory inven){
     myfile << biscuit<<endl;
     myfile << bread<<endl;
     myfile << chocolate<<endl;
+    
+
 
     myfile.close();
 }

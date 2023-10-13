@@ -6,6 +6,8 @@
 #include "Inventory.h"
 #include "Person.h"
 
+using namespace std;
+
 class Employee : public Person {
  private:
   double wageCost;
@@ -14,12 +16,20 @@ class Employee : public Person {
  public:
   Employee(){};
   Employee(string _name):Person(_name){
-     wageCost = 50;
-     tipCost = 2;
+     wageCost = generateRandom(2,6);
+     tipCost = generateRandom(0,3);
   };
-  void drawWage(){
-    Inventory.setMoney(Inventory.getMoney() - wageCost - tipCost);
+  void drawWage(Inventory& inventory){
+    inventory.setMoney(inventory.getMoney() - wageCost + tipCost);
   }
+
+  double getwageCost(){return wageCost;};
+  double gettipCost(){return tipCost;}
+
+
+
+
+
 };
 
 #endif
