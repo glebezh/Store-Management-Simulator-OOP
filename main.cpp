@@ -4,7 +4,7 @@
 using namespace std;
 #include <string>
 #include <vector>
-
+extern void saveGame(Inventory inven);
 
 int main(){
 
@@ -13,17 +13,21 @@ int main(){
     double starting_money = 100.0;
     Inventory inventory(starting_money);
 
-    string names[60] = {"Ila", "Gunner","Stevie","Kevin","Cali","Drew","Paris","Roman","Giselle",
+     string names[60] = {"Ila", "Gunner","Stevie","Kevin","Cali","Drew","Paris","Roman","Giselle",
     "Uriel","Magnolia","Orion","Elena","Kairo","Aubriella","Cash","Grace","Keegan","Mary","Elliot","Denver",
     "Alex","Saige","Kamryn","Rayne","Harlem","Mya","Isaiah","Sophia","Cyrus","Katherine","Finn","Leila",
     "John","Mina","Joel","Anahi","Corey","Amayah","Archie","Cadence","Rex","Ainhoa","Kylan","Melina","Jacoby",
-    "Ruby","Robert","Kai","Roy","Sevyn","Madden","Dalayza","Felipe","Madeline","Collin","Lennox","Braylen","Winnie","Connor"}; 
+    "Ruby","Robert","Kai","Roy","Sevyn","Madden","Dalayza","Felipe","Madeline","Collin","Lennox","Braylen","Winnie","Connor"};
+    //load call happens here, if statement and if not we create a fresh inventory
+    // only inventory and store values matter, we can generate fresh customers and employees every time
+
+    
     int day = 1;
     
     vector<Customer*> customers;
     for (int i = 0; i<5; i++){ //get rid of magic value
         customers.push_back(new Customer(names[i]));
-        std::cout << customers[i]->getDesiredItem1();
+    std::cout << customers[i]->getDesiredItem1();
         std::cout << customers[i]->getDesiredItem2();
         std::cout << customers[i]->getDesiredItem3();
     }
@@ -42,10 +46,10 @@ int main(){
     inventory.buyItemProduce();
     inventory.buyItemDairy();
     inventory.buyItemDry();
-
+    saveGame(inventory);
     inventory.removeItem("Apple");
     inventory.showproduceItems();
 
-
+    
 
 }
