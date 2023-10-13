@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Customer.h"
+#include "Employee.h"
 #include "Inventory.h"
 #include "Random.h"
 
@@ -11,6 +12,9 @@ int main() {
   double totalMoney = 100;
   double rating = 3;
   int choice = 0;
+  int random = 0;
+
+  Inventory hold(totalMoney);
 
   while ((rating > 0.5) && (totalMoney > 0)) {
     system("clear");
@@ -18,15 +22,33 @@ int main() {
     std::cout << "Your Current Money: $" << totalMoney << std::endl;
     std::cout << "Your Current Rating: " << rating << std::endl;
     int numCustomers = generateRandom(1, 2 * dayCounter + 1);
+    std::cout << "" << std::endl;
 
-    Inventory hold(totalMoney);
+    std::cout << "Current Inventory:" << std::endl;
+    hold.showproduceItems();
+    hold.showdryItems();
+    hold.showdairyItems();
+    std::cout << "" << std::endl;
 
     hold.buyItemProduce();
     hold.buyItemDry();
     hold.buyItemDairy();
+
+    std::cout << "New Inventory:" << std::endl;
     hold.showproduceItems();
     hold.showdryItems();
     hold.showdairyItems();
+    std::cout << "" << std::endl;
+
+    hold.hireEmployee();
+    std::cout << "" << std::endl;
+    std::cout << "Enter 0 to start the day" << std::endl;
+    std::cin >> random;
+    if (random != 0) {
+      std::cout << "Please enter a valid number" << std::endl;
+      std::cout << "Enter 0 to start the day" << std::endl;
+      std::cin >> random;
+    }
 
     for (int i = 0; i < numCustomers; i++) {
       Customer customer;
@@ -56,9 +78,11 @@ int main() {
       customer.buyFromInventory2(hold);
       customer.buyFromInventory3(hold);
       totalMoney = totalMoney + customer.getMoneySpent();
+      totalMoney = totalMoney + (hold.getEmployeeCount() * numCustomers * 2);
 
-      std::cout << customer.getName() << " " << i + 1 << " bought "
-                << customer.itemsBought() << " items" << std::endl;
+      std::cout << customer.getName() << " "
+                << " bought " << customer.itemsBought() << " items"
+                << std::endl;
 
       rating = customer.setRating(rating);
     };
@@ -69,11 +93,39 @@ int main() {
     std::cout << hold.checkDairyExpiry() << " Dairy Items have Expired"
               << std::endl;
 
+    std::cout << "" << std::endl;
+    std::cout << "Current Money:" << totalMoney << std::endl;
+
+    rating = rating + (hold.getEmployeeCount() * 0.2);
+
+    std::cout << "Current Rating:" << rating << std::endl;
+    std::cout << "" << std::endl;
+
     std::cout << "You have Finished Day " << dayCounter << std::endl;
     std::cout << "Enter 0 to Continue" << std::endl;
     std::cin >> choice;
+
+    if (choice != 0) {
+      std::cout << "Please enter a valid number" << std::endl;
+      std::cout << "Enter 0 to Continue" << std::endl;
+      std::cin >> choice;
+    }
+
     dayCounter = dayCounter + 1;
+    hold.resetEmployee();
   };
 
+  std::cout << "Game Over" << std::endl;
+
+  if (rating < 0.5) {
+    std::cout << "Your store had an abysmal rating and had to close!"
+              << std::endl;
+    std::cout << "Better Luck Next Time" << std::endl;
+  }
+
+  if (totalMoney < 0) {
+    std::cout << "Your store when bankrupt and had to close!" << std::endl;
+    std::cout << "Better Luck Next Time" << std::endl;
+  }
   return 0;
 }

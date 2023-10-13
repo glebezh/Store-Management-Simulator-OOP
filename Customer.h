@@ -9,15 +9,17 @@
 #include "Random.h"
 using namespace std;
 
-std::vector<std::string> products = {"Apple", "Banana", "Biscuit", "Bread", "Carrot", "Cheese", "Chocolate", "Milk", "Yoghurt"};
+std::vector<std::string> products = {"Apple",     "Banana", "Biscuit",
+                                     "Bread",     "Carrot", "Cheese",
+                                     "Chocolate", "Milk",   "Yoghurt"};
 
 class Customer : public Person {
  private:
-  double moneySpent;
-  int itemCounter;
-  string wantedItem1;
-  string wantedItem2;
-  string wantedItem3;
+  double moneySpent = 0;
+  int itemCounter = 0;
+  string wantedItem1 = "";
+  string wantedItem2 = "";
+  string wantedItem3 = "";
   double rating = 0;
 
  public:
@@ -25,16 +27,16 @@ class Customer : public Person {
     name = "";
     wantedItem1 = "";
     wantedItem2 = "";
-    wantedItem3 = "";        //file:////usr/share/doc/HTML/en-US/index.html
+    wantedItem3 = "";  // file:////usr/share/doc/HTML/en-US/index.html
   }
-  Customer(string _name):Person(_name){
-    wantedItem1 = generateRandomItem(products);//Randomly generate here
+  Customer(string _name) : Person(_name) {
+    wantedItem1 = generateRandomItem(products);  // Randomly generate here
     wantedItem2 = generateRandomItem(products);  // and here
     wantedItem3 = generateRandomItem(products);  // and here
     moneySpent = 0;
     itemCounter = 0;
   }
-  string getName(){return name;}
+  string getName() { return name; }
 
   double getMoneySpent() { return moneySpent; };
 
@@ -160,9 +162,13 @@ class Customer : public Person {
   }
 
   void setName(std::string setName) { name = setName; };
-  
-  string getDesiredItem1() { return wantedItem1;};
-  string getDesiredItem2(){ return wantedItem2;};
-  string getDesiredItem3() { return wantedItem3;};
+
+  string getDesiredItem1() { return wantedItem1; };
+  string getDesiredItem2() { return wantedItem2; };
+  string getDesiredItem3() { return wantedItem3; };
+
+  void setDesiredItem1(std::string itemName) { wantedItem1 = itemName; };
+  void setDesiredItem2(std::string itemName) { wantedItem2 = itemName; };
+  void setDesiredItem3(std::string itemName) { wantedItem3 = itemName; };
 };
 #endif
