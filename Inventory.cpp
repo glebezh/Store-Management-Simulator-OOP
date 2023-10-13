@@ -232,7 +232,7 @@ void Inventory::buyItemDairy() {
     if (choice == 1) {
       std::cout << "Money Remaining: $" << money << std::endl;
       std::cout << "Do you wish to buy Cheese (1)(-$1.75)(+$2.00), Milk "
-                   "(2)(-$1.75)(+$2.25) or "
+                   "(2)(-$1.75)(+$2.25) oinevtory.getProduceItems()[i].getName();r "
                    "Yoghurt (3)(-$1.50)(+$2.50)?"
                 << std::endl;
       std::cin >> option;
