@@ -18,6 +18,8 @@ class Inventory {
   int produceCounter = 0;
   int dryCounter = 0;
   int dairyCounter = 0;
+  int employeeCounter = 0;
+  int wage = 20;
 
  public:
   // Constructors
@@ -46,6 +48,10 @@ class Inventory {
   int checkProduceExpiry();
   int checkDryExpiry();
   int checkDairyExpiry();
+
+  void hireEmployee();
+  int getEmployeeCount() { return employeeCounter; };
+  void resetEmployee() { employeeCounter = 0; };
 };
 
 #endif
