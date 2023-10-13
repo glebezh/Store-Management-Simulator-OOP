@@ -6,13 +6,13 @@ ofstream myfile;
 void saveGame(Inventory inven, int days, double rating, string name){
     myfile.open("save.txt");
     myfile << name<<endl;
-    myfile << days<<endl;
-    myfile << rating<<endl;
-    myfile << inven.getMoney()<<endl;
+    myfile << to_string(days)<<endl;
+    myfile << to_string(rating)<<endl;
+    myfile << to_string(inven.getMoney())<<endl;
 
     //saving produce
     int produceCount = inven.getProduceCounter();
-    myfile << produceCount <<endl;
+    myfile << to_string(produceCount)<<endl;
     int apples = 0;
     int bananas = 0;
     int carrots = 0;
@@ -31,13 +31,13 @@ void saveGame(Inventory inven, int days, double rating, string name){
         }
         
     }
-    myfile << apples<<endl;
-    myfile << bananas<<endl;
-    myfile << carrots<<endl;
+    myfile << to_string(apples)<<endl;
+    myfile << to_string(bananas)<<endl;
+    myfile << to_string(carrots)<<endl;
 
     //saving dairy
     int dairyCount = inven.getDairyCounter();
-    myfile << dairyCount <<endl;
+    myfile << to_string(dairyCount) <<endl;
     int cheese = 0;
     int milk = 0;
     int yoghurt = 0;
@@ -56,13 +56,13 @@ void saveGame(Inventory inven, int days, double rating, string name){
         }
         
     }
-    myfile << cheese<<endl;
-    myfile << milk<<endl;
-    myfile << yoghurt<<endl;
+    myfile << to_string(cheese)<<endl;
+    myfile << to_string(milk)<<endl;
+    myfile << to_string(yoghurt)<<endl;
 
     //saving dry
     int dryCount = inven.getDryCounter();
-    myfile << dryCount <<endl;
+    myfile << to_string(dryCount) <<endl;
     int biscuit = 0;
     int bread = 0;
     int chocolate = 0;
@@ -81,11 +81,12 @@ void saveGame(Inventory inven, int days, double rating, string name){
         }
         
     }
-    myfile << biscuit<<endl;
-    myfile << bread<<endl;
-    myfile << chocolate<<endl;
+    myfile << to_string(biscuit)<<endl;
+    myfile << to_string(bread)<<endl;
+    myfile << to_string(chocolate)<<endl;
     
 
 
     myfile.close();
 }
+
