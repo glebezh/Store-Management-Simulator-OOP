@@ -84,6 +84,10 @@ void saveGame(Inventory inven, int days, double rating, string name){
     myfile << to_string(biscuit)<<endl;
     myfile << to_string(bread)<<endl;
     myfile << to_string(chocolate)<<endl;
+
+    int empCount = inven.getEmployeeCount();
+    myfile << to_string(empCount);
+    
     
 
 

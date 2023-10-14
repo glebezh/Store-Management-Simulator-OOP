@@ -24,7 +24,7 @@ int main() {
       "Kai",       "Roy",    "Sevyn",     "Madden",  "Dalayza",  "Felipe",
       "Madeline",  "Collin", "Lennox",    "Braylen", "Winnie",   "Connor"};
   // load call happens here, if statement and if not we create a fresh inventory
-  //  only inventory and store values matter, we can generate fresh customers
+  //  only inventory and store amount values matter, we can generate fresh customers
   //  and employees every time
 
   int day = 1;

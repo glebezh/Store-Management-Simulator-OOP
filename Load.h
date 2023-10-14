@@ -22,6 +22,7 @@ class Load{
         double rating;
         string var;
         int days;
+        int employees;
     public:
         Load(){
             inputfile.open("save.txt");
@@ -56,6 +57,9 @@ class Load{
             bread = stoi(var);
             getline(inputfile, var);
             chocolate = stoi(var);
+            getline(inputfile, var);
+            employees = stoi(var);
+            
            
         }
         string getName(){return name;}
@@ -74,6 +78,6 @@ class Load{
         double getMoney() {return money;}
         double getRating() {return rating;}
         int getDays() {return days;}
-
+        int getEmployees() {return employees;}
 
 };
