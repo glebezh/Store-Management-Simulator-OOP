@@ -162,6 +162,7 @@ int main() {
   };
 
   if (rating < 0.5) {
+    system("clear");
     std::cout << "Game Over" << std::endl;
     std::cout << "Your store had an abysmal rating and had to close!"
               << std::endl;
@@ -169,6 +170,7 @@ int main() {
   }
 
   if (totalMoney < 0) {
+    system("clear");
     std::cout << "Game Over" << std::endl;
     std::cout << "Your store when bankrupt and had to close!" << std::endl;
     std::cout << "Better Luck Next Time" << std::endl;
