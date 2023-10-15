@@ -7,7 +7,8 @@
 #include "Load.h"
 #include "Random.h"
 
-extern void saveGame(Inventory inven, int days, double rating, string name);
+extern void saveGame1(Inventory inven, int days, double rating, string name);
+extern void saveGame2(Inventory inven, int days, double rating, string name);
 
 int main() {
   initRandom();
@@ -35,7 +36,13 @@ int main() {
   };
 
   if (save == 1) {
-    Load loadSave;
+    Load loadSave(1);
+    std::cout << "Save File Loaded" << std::endl;
+    std::cout << loadSave.getName() << std::endl;
+    storeName = loadSave.getName();
+    rating = loadSave.getRating();
+    totalMoney = loadSave.getMoney();
+    dayCounter = loadSave.getDays();
   };
 
   if (save == 0) {
@@ -44,9 +51,20 @@ int main() {
   };
 
   Inventory hold(totalMoney);
+  if (save == 1) {
+    Load loadSave2(2);
+    std::vector<std::string> loadedProduce = loadSave2.getLoadedProduce();
+    std::vector<std::string> loadedDry = loadSave2.getLoadedDry();
+    std::vector<std::string> loadedDairy = loadSave2.getLoadedDairy();
+
+    hold.initializeProduceItems(loadedProduce);
+    hold.initializeDryItems(loadedDry);
+    hold.initializeDairyItems(loadedDairy);
+    hold.updateInventory(loadSave2.getProduceItems(), loadSave2.getDryItems(),
+                         loadSave2.getDairyItems());
+  }
 
   while ((rating > 0.5) && (totalMoney > 0)) {
-    system("clear");
     std::cout << storeName << " is now on Day " << dayCounter << std::endl;
     std::cout << "Your Current Money: $" << totalMoney << std::endl;
     std::cout << "Your Current Rating: " << rating << std::endl;
@@ -144,18 +162,19 @@ int main() {
     hold.resetEmployee();
 
     std::cout << "Do you want to save now?" << std::endl;
-    std::cout << "Yes (1) or now (0)" << std::endl;
+    std::cout << "Yes (1) or No (0)" << std::endl;
     std::cin >> saveNow;
 
     if ((saveNow != 0) && (saveNow != 1)) {
       std::cout << "Please enter a valid number" << std::endl;
       std::cout << "Do you want to save now?" << std::endl;
-      std::cout << "Yes (1) or now (0)" << std::endl;
+      std::cout << "Yes (1) or No (0)" << std::endl;
       std::cin >> choice;
     }
 
     if (saveNow == 1) {
-      saveGame(hold, dayCounter, rating, storeName);
+      saveGame1(hold, dayCounter, rating, storeName);
+      saveGame2(hold, dayCounter, rating, storeName);
       std::cout << "Game Saved" << std::endl;
       break;
     }

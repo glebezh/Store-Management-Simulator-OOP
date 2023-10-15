@@ -374,3 +374,45 @@ void Inventory::hireEmployee() {
     }
   }
 }
+
+void Inventory::initializeProduceItems(const std::vector<std::string>& items) {
+  for (const std::string& itemName : items) {
+    if (itemName == "Apple") {
+      produceItems.push_back(new Apple);
+    }
+    if (itemName == "Banana") {
+      produceItems.push_back(new Banana);
+    }
+    if (itemName == "Carrot") {
+      produceItems.push_back(new Carrot);
+    }
+  }
+}
+
+void Inventory::initializeDryItems(const std::vector<std::string>& items) {
+  for (const std::string& itemName : items) {
+    if (itemName == "Biscuit") {
+      dryItems.push_back(new Biscuit);
+    }
+    if (itemName == "Bread") {
+      dryItems.push_back(new Bread);
+    }
+    if (itemName == "Chocolate") {
+      dryItems.push_back(new Chocolate);
+    }
+  }
+}
+
+void Inventory::initializeDairyItems(const std::vector<std::string>& items) {
+  for (const std::string& itemName : items) {
+    if (itemName == "Cheese") {
+      dairyItems.push_back(new Cheese);
+    }
+    if (itemName == "Milk") {
+      dairyItems.push_back(new Milk);
+    }
+    if (itemName == "Yoghurt") {
+      dairyItems.push_back(new Yoghurt);
+    }
+  }
+}
