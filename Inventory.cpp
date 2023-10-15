@@ -62,6 +62,12 @@ void Inventory::buyItemProduce() {
                 << std::endl;
       std::cout << "Enter 0 to continue" << std::endl;
       std::cin >> choice;
+
+      while (choice != 0) {
+        std::cout << "Please enter a valid value" << std::endl;
+        std::cout << "Enter 0 to continue" << std::endl;
+        std::cin >> choice;
+      }
       break;
     }
     std::cout << "Money Remaining: $" << money << std::endl;
