@@ -18,6 +18,11 @@ class Employee : public Person {
     wageCost = 50;
     tipCost = 2;
   };
+
+  double getWage() { return wageCost; };
+
+  double getTip() { return tipCost; };
+
   void drawWage(Inventory shop) {
     shop.setMoney(shop.getMoney() - wageCost - tipCost);
   }

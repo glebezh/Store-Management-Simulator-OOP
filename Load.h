@@ -25,6 +25,41 @@ class Load {
   int days = 0;
 
  public:
+  Load() {
+    inputfile.open("save.txt");
+    getline(inputfile, name);
+    getline(inputfile, var);
+    days = stoi(var);
+    getline(inputfile, var);
+    rating = stod(var);
+    getline(inputfile, var);
+    money = stod(var);
+    getline(inputfile, var);
+    produceItems = stoi(var);
+    getline(inputfile, var);
+    apple = stoi(var);
+    getline(inputfile, var);
+    banana = stoi(var);
+    getline(inputfile, var);
+    carrot = stoi(var);
+    getline(inputfile, var);
+    dairyItems = stoi(var);
+    getline(inputfile, var);
+    cheese = stoi(var);
+    getline(inputfile, var);
+    milk = stoi(var);
+    getline(inputfile, var);
+    yoghurt = stoi(var);
+    getline(inputfile, var);
+    dryItems = stoi(var);
+    getline(inputfile, var);
+    biscuit = stoi(var);
+    getline(inputfile, var);
+    bread = stoi(var);
+    getline(inputfile, var);
+    chocolate = stoi(var);
+    inputfile.close();
+  }
   Load(int n) {
     if (n == 1) {
       inputfile.open("save.txt");

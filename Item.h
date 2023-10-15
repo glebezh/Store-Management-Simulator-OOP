@@ -14,19 +14,19 @@ class Item {
 
  public:
   Item();
-  Item(string _name, double _sellPrice, double _purchasePrice, bool _expired, int _counter);
+  Item(string _name, double _sellPrice, double _purchasePrice, bool _expired,
+       int _counter);
   ~Item(){};
   string getName() { return name; }
   double getSellPrice() { return sellPrice; }
   double getPurchasePrice() { return purchasePrice; }
   bool getExpired() { return expired; }
-  virtual bool determineExpiry(){
-      if (counter == 3){
-        expired = true;
-      };
-      return expired;
+  virtual bool determineExpiry() {
+    if (counter == 3) {
+      expired = true;
+    };
+    return expired;
   }
-
 };
 
 #endif
