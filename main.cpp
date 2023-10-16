@@ -50,8 +50,8 @@ int main(){
         if (day >= 1){
             std::cout << "In your inventory you have the following produce items" << std::endl;
             inventory.showproduceItems();
-            inventory.showdairyItems();
-            inventory.showdryItems();
+            // inventory.showdairyItems();
+            // inventory.showdryItems();
         }
 
         //show expiry ===== quick sell option
@@ -78,7 +78,6 @@ int main(){
         inventory.buyItemProduce();
         inventory.buyItemDairy();
         inventory.buyItemDry();
-        saveGame(inventory, days, rating, storeName);
 
 
         // inventory.removeItem("Apple");
@@ -101,15 +100,27 @@ int main(){
             }
         }
 
+        //Incrementing counter by 1 each day
+        for (int i = 0; i < inventory.getProduceCounter(); i++) {
+            inventory.getProduceItems()[i]->setCounter(inventory.getProduceItems()[i]->getCounter() + 1);
+;
+        };
+        for (int i = 0; i < inventory.getDryCounter(); i++) {
+            inventory.getDryItems()[i]->setCounter(inventory.getDryItems()[i]->getCounter() + 1);
+        };
+        for (int i = 0; i < inventory.getDairyCounter(); i++) {
+            inventory.getDairyItems()[i]->setCounter(inventory.getDairyItems()[i]->getCounter() + 1);
+        };
 
+        //Checking expiry and deleting from inventory
         inventory.checkDairyExpiry();
         inventory.checkDryExpiry();
         inventory.checkProduceExpiry();
 
+        saveGame(inventory, days, rating, storeName);
+
         day+=1;
-
-        
-
+          
     }
 
     return 0;

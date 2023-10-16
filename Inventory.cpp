@@ -320,7 +320,6 @@ int Inventory::checkDryExpiry() {
       std::swap(dryItems[i], dryItems[dryCounter - 1]);
       dryItems.pop_back();
       dryCounter--;
-
       counter = counter + 1;
     }
   };

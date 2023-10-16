@@ -7,6 +7,7 @@
 
 class Carrot : public Item{
   private:
+
   public:
     Carrot(): Item("Carrot", 1.5, 1.25, false, 0){
     };

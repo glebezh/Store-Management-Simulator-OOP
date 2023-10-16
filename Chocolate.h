@@ -8,7 +8,7 @@
 class Chocolate : public Item{
   private:
   public:
-    Chocolate(): Item("Chocolate", 2.00, 1.75, false, 0){
+    Chocolate(): Item("Chocolate", 2.00, 1.75, 0, 3){
     };
     ~Chocolate(){};
 

@@ -20,6 +20,11 @@ class Item {
   double getSellPrice() { return sellPrice; }
   double getPurchasePrice() { return purchasePrice; }
   bool getExpired() { return expired; }
+  int getCounter(){return counter;}
+  void setCounter(int _counter){
+    counter = _counter;
+  }
+  
   virtual bool determineExpiry(){
       if (counter == 3){
         expired = true;
