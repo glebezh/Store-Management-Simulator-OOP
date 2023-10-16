@@ -4,6 +4,7 @@
 #include <string>
 
 using namespace std;
+// class containing information for Person object
 
 class Person {
   protected:

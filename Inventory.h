@@ -52,6 +52,16 @@ class Inventory {
   void hireEmployee();
   int getEmployeeCount() { return employeeCounter; };
   void resetEmployee() { employeeCounter = 0; };
+
+  void initializeProduceItems(const std::vector<std::string>& items);
+  void initializeDryItems(const std::vector<std::string>& items);
+  void initializeDairyItems(const std::vector<std::string>& items);
+
+  void updateInventory(int p, int dr, int da) {
+    produceCounter = p;
+    dryCounter = dr;
+    dairyCounter = da;
+  }
 };
 
 #endif

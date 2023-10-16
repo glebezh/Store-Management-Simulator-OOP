@@ -8,6 +8,7 @@
 #include "Person.h"
 #include "Random.h"
 using namespace std;
+// class containing information for Customer object
 
 std::vector<std::string> products = {"Apple",     "Banana", "Biscuit",
                                      "Bread",     "Carrot", "Cheese",
@@ -15,6 +16,7 @@ std::vector<std::string> products = {"Apple",     "Banana", "Biscuit",
 
 class Customer : public Person {
  private:
+ //variables for customer
   double moneySpent = 0;
   int itemCounter = 0;
   string wantedItem1 = "";
@@ -23,6 +25,7 @@ class Customer : public Person {
   double rating = 0;
 
  public:
+ //constructors
   Customer() {
     name = "";
     wantedItem1 = "";
@@ -30,16 +33,18 @@ class Customer : public Person {
     wantedItem3 = "";  // file:////usr/share/doc/HTML/en-US/index.html
   }
   Customer(string _name) : Person(_name) {
-    wantedItem1 = generateRandomItem(products);  // Randomly generate here
-    wantedItem2 = generateRandomItem(products);  // and here
-    wantedItem3 = generateRandomItem(products);  // and here
+    wantedItem1 = ""; // Randomly generate here
+    wantedItem2 = ""; // and here
+    wantedItem3 = ""; // and here
     moneySpent = 0;
     itemCounter = 0;
+    rating = 0;
   }
+  //get functions
   string getName() { return name; }
 
   double getMoneySpent() { return moneySpent; };
-
+  //fcuntion that buys from the inventory 
   void buyFromInventory1(Inventory& inventory) {
     Item* item = nullptr;
 
@@ -47,7 +52,8 @@ class Customer : public Person {
       if (inventory.getProduceItems()[i]->getName() == wantedItem1) {
         item = inventory.getProduceItems()[i];
         itemCounter++;
-        moneySpent = moneySpent + item->getSellPrice();
+        // inventory.setMoney(inventory.getMoney()+ item->getSellPrice()); 
+        moneySpent = moneySpent + item->getSellPrice(); // why do we need this here?
         inventory.removeItem(item->getName());
         break;
       }
@@ -135,7 +141,7 @@ class Customer : public Person {
       }
     }
   }
-
+  //inventory counter
   int itemsBought() {
     if (itemCounter == 3) {
       rating = 3;
@@ -152,7 +158,7 @@ class Customer : public Person {
     };
     return itemCounter;
   };
-
+  //rating adjsutment
   double setRating(double currentRating) {
     double newRating = 0;
 
@@ -162,7 +168,7 @@ class Customer : public Person {
   }
 
   void setName(std::string setName) { name = setName; };
-
+  //randomly setting desired items
   string getDesiredItem1() { return wantedItem1; };
   string getDesiredItem2() { return wantedItem2; };
   string getDesiredItem3() { return wantedItem3; };

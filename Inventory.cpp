@@ -14,10 +14,12 @@
 #include "Milk.h"
 #include "Yoghurt.h"
 
+#include <limits>
+//code for inventory function
 Inventory::Inventory() { money = 0; }
 
 Inventory::Inventory(double _money) { money = _money; }
-
+//remove item function based on name info
 void Inventory::removeItem(string name) {
   for (int i = 0; i < produceCounter; i++) {
     if (produceItems[i]->getName() == name) {
@@ -52,7 +54,7 @@ void Inventory::removeItem(string name) {
     }
   }
 }
-
+//buy item functions
 void Inventory::buyItemProduce() {
   int choice = 1;
   int option = 0;
@@ -62,66 +64,88 @@ void Inventory::buyItemProduce() {
                 << std::endl;
       std::cout << "Enter 0 to continue" << std::endl;
       std::cin >> choice;
+
+      while (choice != 0) {
+        std::cout << "Please enter a valid value" << std::endl;
+        std::cout << "Enter 0 to continue" << std::endl;
+        std::cin >> choice;
+      }
       break;
+
     }
     std::cout << "Money Remaining: $" << money << std::endl;
-    std::cout << "Do you wish to buy Produce (Apples, Bananas or Carrots)?"
+    std::cout << "Do you wish to buy Produce (Apples, Bananas or Carrots)?" //problem
               << std::endl;
     std::cout << "Enter 1 for Yes or 0 for No." << std::endl;
-    std::cin >> choice;
-    while ((choice != 1) && (choice != 0)) {
-      std::cout << "Please enter a valid number" << std::endl;
-      std::cout << "Money Remaining: $" << money << std::endl;
-      std::cout << "Do you wish to buy Produce (Apples, Bananas or Carrots)?"
-                << std::endl;
-      std::cout << "Enter 1 for Yes or 0 for No." << std::endl;
+
+    //input validation
+    while (true) {
       std::cin >> choice;
-      std::cout << "\n";
+      if (std::cin.good() && (choice == 0 || choice == 1)) {
+        break;
+      } else {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+        std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
+      }
     }
+
+    // std::cin >> choice;
+
+    // while ((choice != 1) && (choice != 0)  ) {
+    //   std::cout << "Please enter a valid number" << std::endl;
+    //   std::cout << "Money Remaining: $" << money << std::endl;
+    //   std::cout << "Do you wish to buy Produce (Apples, Bananas or Carrots)?"
+    //             << std::endl;
+    //   std::cout << "Enter 1 for Yes or 0 for No." << std::endl;
+    //   std::cin >> choice;
+    //   std::cout << "\n";
+    // }
+
+
     if (choice == 1) {
       std::cout << "Money Remaining: $" << money << std::endl;
       std::cout << "Which produce item would you like to buy? \n\n (1) Apples "
-                   "(-$0.75)(+$1.00), \n (2) Bananas "
-                   "(-$0.90)(+$1.25)\n (3) Carrots (-$1.25)(+$1.50)?"
+                   "(-$0.75)(+$1.00) \n (2) Bananas "
+                   "(-$0.90)(+$1.25)\n (3) Carrots (-$1.25)(+$1.50)"
                 << std::endl;
       std::cout << std::endl;
       std::cout << "Produce Number: ";
-      std::cin >> option;
-      if ((option != 1) && (option != 2) && (option != 3)) {
-        std::cout << "Money Remaining: $" << money << std::endl;
-        std::cout << "Please enter a valid number" << std::endl;
-        std::cout << "Do you wish to buy Apples (1)(-$0.75)(+$1.00), Bananas "
-                     "(2)(-$0.90)(+$1.25) or "
-                     "Carrots (3)(-$1.25)(+$1.50)?"
-                  << std::endl;
-        option = 0;
-        std::cin >> option;
-      }
-      if (option >= 1 && option <= 3) {
-        Item* newItem = nullptr;
-        if (option == 1) {
-          newItem = new Apple;
-        } else if (option == 2) {
-          newItem = new Banana;
-        } else if (option == 3) {
-          newItem = new Carrot;
-        }
 
-        if (money - newItem->getPurchasePrice() < 0) {
-          std::cout << "You don't have enough money for this item."
-                    << std::endl;
-          delete newItem;
+      while (true) {
+        std::cin >> option;
+        if (std::cin.good() && (option >= 1 && option <= 3)) {
+          break;
         } else {
-          std::cout << newItem->getName() << " was added to the inventory."
-                    << std::endl;
-          std::cout << "\n";
-          produceItems.push_back(newItem);
-          money -= newItem->getPurchasePrice();
-          produceCounter++;
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+          std::cout << "Please enter a valid number (1, 2, or 3)" << std::endl;
+        }
+      }
+
+      Item* newItem = nullptr;
+      if (option == 1) {
+        newItem = new Apple;
+      } else if (option == 2) {
+        newItem = new Banana;
+      } else if (option == 3) {
+        newItem = new Carrot;
+      }
+
+      if (money - newItem->getPurchasePrice() < 0) {
+        std::cout << "You don't have enough money for this item."
+                  << std::endl;
+        delete newItem;
+      } else {
+        std::cout << newItem->getName() << " was added to the inventory."
+                  << std::endl;
+        std::cout << "\n";
+        produceItems.push_back(newItem);
+        money -= newItem->getPurchasePrice();
+        produceCounter++;
         }
       }
     }
-  }
 
   std::cout << "Items Bought:" << std::endl;
   for (int i = 0; i < produceCounter; i++) {
@@ -136,62 +160,76 @@ void Inventory::buyItemDry() {
   while (choice == 1 && money >= 0) {
     if (dryCounter == 1000) {
       std::cout << "Maximum Capacity for Dry has been reached." << std::endl;
-      std::cout << "Enter 0 to continue" << std::endl;
+      std::cout << "Press any key to continue" << std::endl;
       std::cin >> choice;
       break;
     }
     std::cout << "Money Remaining: $" << money << std::endl;
-    std::cout << "Do you wish to buy Dry (Biscuit, Bread or Chocolate)?"
+    std::cout << "Do you wish to buy Dry (Biscuit, Bread or Chocolate)?" //problem
               << std::endl;
     std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
-    std::cin >> choice;
-    while ((choice != 1) && (choice != 0)) {
-      std::cout << "Please enter a valid number" << std::endl;
-      std::cout << "Money Remaining: $" << money << std::endl;
-      std::cout << "Do you wish to buy Dry (Biscuit, Bread or Chocolate)?"
-                << std::endl;
-      std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
+
+    //input validation
+    while (true) {
       std::cin >> choice;
+      if (std::cin.good() && (choice == 0 || choice == 1)) {
+        break;
+      } else {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+        std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
+      }
     }
+
+    // std::cin >> choice;
+
+
+    // while ((choice != 1) && (choice != 0)) {
+    //   std::cout << "Please enter a valid number" << std::endl;
+    //   std::cout << "Money Remaining: $" << money << std::endl;
+    //   std::cout << "Do you wish to buy Dry (Biscuit, Bread or Chocolate)?"
+    //             << std::endl;
+    //   std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
+    //   std::cin >> choice;
+    // }
     if (choice == 1) {
       std::cout << "Money Remaining: $" << money << std::endl;
       std::cout << "Which dry item would you like to buy? \n\n (1) Biscuit "
-                   "(-$0.90)(+$1.25), \n (2) Bread "
-                   "(-$0.90)(+$1.25)\n (3) Chocolate (-$1.50)(+$2.25)?"
+                   "(-$0.90)(+$1.25) \n (2) Bread "
+                   "(-$0.90)(+$1.25)\n (3) Chocolate (-$1.50)(+$2.25)"
                 << std::endl;
       std::cout << std::endl;
       std::cout << "Dry Number: ";
-      std::cin >> option;
-      if ((option != 1) && (option != 2) && (option != 3)) {
-        std::cout << "Money Remaining: $" << money << std::endl;
-        std::cout << "Please enter a valid number" << std::endl;
-        std::cout << "Which dry item would you like to buy? \n\n (1) Biscuit "
-                     "(-$0.90)(+$1.25), \n (2) Bread "
-                     "(-$0.90)(+$1.25)\n (3) Chocolate (-$1.50)(+$2.25)?"
-                  << std::endl;
-        std::cout << std::endl;
+      
+      while (true) {
         std::cin >> option;
-      }
-      if (option >= 1 && option <= 3) {
-        Item* newItem = nullptr;
-        if (option == 1) {
-          newItem = new Biscuit;
-        } else if (option == 2) {
-          newItem = new Bread;
-        } else if (option == 3) {
-          newItem = new Chocolate;
-        }
-
-        if (money - newItem->getPurchasePrice() < 0) {
-          std::cout << "You don't have enough money for this item."
-                    << std::endl;
-          delete newItem;
+        if (std::cin.good() && (option >= 1 && option <= 3)) {
+          break;
         } else {
-          std::cout << newItem->getName() << " was added" << std::endl;
-          dryItems.push_back(newItem);
-          money -= newItem->getPurchasePrice();
-          dryCounter++;
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+          std::cout << "Please enter a valid number (1, 2, or 3)" << std::endl;
         }
+      }
+
+      Item* newItem = nullptr;
+      if (option == 1) {
+        newItem = new Biscuit;
+      } else if (option == 2) {
+        newItem = new Bread;
+      } else if (option == 3) {
+        newItem = new Chocolate;
+      }
+
+      if (money - newItem->getPurchasePrice() < 0) {
+        std::cout << "You don't have enough money for this item."
+                  << std::endl;
+        delete newItem;
+      } else {
+        std::cout << newItem->getName() << " was added" << std::endl;
+        dryItems.push_back(newItem);
+        money -= newItem->getPurchasePrice();
+        dryCounter++;
       }
     }
   }
@@ -217,51 +255,66 @@ void Inventory::buyItemDairy() {
     std::cout << "Do you wish to buy Dairy (Cheese, Milk or Yoghurt)?"
               << std::endl;
     std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
-    std::cin >> choice;
-    while ((choice != 1) && (choice != 0)) {
-      std::cout << "Please enter a valid number" << std::endl;
-      std::cout << "Money Remaining: $" << money << std::endl;
-      std::cout << "Do you wish to buy Dairy (Cheese, Milk or Yoghurt)?"
-                << std::endl;
-      std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
+    std::cout << std::endl;
+
+    //input validation
+    while (true) {
       std::cin >> choice;
+      if (std::cin.good() && (choice == 0 || choice == 1)) {
+        break;
+      } else {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+        std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
+      }
     }
+    // std::cin >> choice;
+    // while ((choice != 1) && (choice != 0)) {
+    //   std::cout << "Please enter a valid number" << std::endl;
+    //   std::cout << "Money Remaining: $" << money << std::endl;
+    //   std::cout << "Do you wish to buy Dairy (Cheese, Milk or Yoghurt)?"
+    //             << std::endl;
+    //   std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
+    //   std::cin >> choice;
+    // }
+
     if (choice == 1) {
       std::cout << "Money Remaining: $" << money << std::endl;
       std::cout << "Which dairy item would you like to buy? \n\n (1) Cheese "
-                   "(-$1.75)(+$2.00), \n (2) Milk "
-                   "(-$1.75)(+$2.25)\n (3) Yoghurt (-$1.50)(+$2.50)?"
+                   "(-$1.75)(+$2.00) \n (2) Milk "
+                   "(-$1.75)(+$2.25)\n (3) Yoghurt (-$1.50)(+$2.50)"
                 << std::endl;
-      std::cin >> option;
-      if ((option != 1) && (option != 2) && (option != 3)) {
-        std::cout << "Money Remaining: $" << money << std::endl;
-        std::cout << "Please enter a valid number" << std::endl;
-        std::cout << "Which dairy item would you like to buy? \n\n (1) Cheese "
-                     "(-$1.75)(+$2.00), \n (2) Milk "
-                     "(-$1.75)(+$2.25)\n (3) Yoghurt (-$1.50)(+$2.50)?"
-                  << std::endl;
-        std::cin >> option;
-      }
-      if (option >= 1 && option <= 3) {
-        Item* newItem = nullptr;
-        if (option == 1) {
-          newItem = new Cheese;
-        } else if (option == 2) {
-          newItem = new Milk;
-        } else if (option == 3) {
-          newItem = new Yoghurt;
-        }
+      std::cout << std::endl;
+      std::cout << "Dairy Number: ";
 
-        if (money - newItem->getPurchasePrice() < 0) {
-          std::cout << "You don't have enough money for this item."
-                    << std::endl;
-          delete newItem;
+      while (true) {
+        std::cin >> option;
+        if (std::cin.good() && (option >= 1 && option <= 3)) {
+          break;
         } else {
-          std::cout << newItem->getName() << " was added" << std::endl;
-          dairyItems.push_back(newItem);
-          money -= newItem->getPurchasePrice();
-          dairyCounter++;
+          std::cin.clear();
+          std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+          std::cout << "Please enter a valid number (1, 2, or 3)" << std::endl;
         }
+      }
+      Item* newItem = nullptr;
+      if (option == 1) {
+        newItem = new Cheese;
+      } else if (option == 2) {
+        newItem = new Milk;
+      } else if (option == 3) {
+        newItem = new Yoghurt;
+      }
+
+      if (money - newItem->getPurchasePrice() < 0) {
+        std::cout << "You don't have enough money for this item."
+                  << std::endl;
+        delete newItem;
+      } else {
+        std::cout << newItem->getName() << " was added" << std::endl;
+        dairyItems.push_back(newItem);
+        money -= newItem->getPurchasePrice();
+        dairyCounter++;
       }
     }
   }
@@ -272,7 +325,7 @@ void Inventory::buyItemDairy() {
   }
   std::cout << " " << std::endl;
 }
-
+// item countern functions
 void Inventory::showproduceItems() {
   std::cout << "Produce Items:" << std::endl;
   for (int i = 0; i < produceCounter; i++) {
@@ -293,7 +346,7 @@ void Inventory::showdairyItems() {
     std::cout << dairyItems[i]->getName() << std::endl;
   }
 }
-
+//expiry checkers
 int Inventory::checkProduceExpiry() {
   int counter = 0;
   for (int i = produceCounter - 1; i >= 0; i--) {
@@ -342,7 +395,7 @@ int Inventory::checkDairyExpiry() {
   };
   return counter;
 }
-
+//add employee functions
 void Inventory::hireEmployee() {
   int choice = 1;
   while (choice == 1) {
@@ -350,26 +403,71 @@ void Inventory::hireEmployee() {
     std::cout << "Do you wish to hire an Employee?" << std::endl;
     std::cout << "(-$20.00 per day) (+$2.00 per customer)" << std::endl;
     std::cout << "Enter 1 for Yes 0 for No" << std::endl;
-    std::cin >> choice;
-    if ((choice != 1) && (choice != 0)) {
-      std::cout << "Money Remaining: $" << money << std::endl;
-      std::cout << "Please enter a valid number" << std::endl;
-      std::cout << "Do you wish to hire an Employee?" << std::endl;
-      std::cout << "(-$20.00 per day) (+$2.00 per customer)" << std::endl;
-      std::cout << "Enter 1 for Yes 0 for No" << std::endl;
+
+    while (true) {
       std::cin >> choice;
+      if (std::cin.good() && (choice == 0 || choice == 1)) {
+        break;
+      } else {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+        std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
+      }
     }
+    
     if (choice == 1) {
       if (money - wage < 0) {
-        std::cout << "You do not have enought money to hire an employee"
+        std::cout << "You do not have enough money to hire an employee"
                   << std::endl;
         break;
       }
       employeeCounter++;
       Employee employee;
-      money = money - 20;
+      money = money - wage; // do we want to dynamically allocate here to eliminate the variable wage?
       employee.setName();
       std::cout << employee.getName() << " was hired" << std::endl;
+    }
+  }
+}
+//creating different item type vectors
+void Inventory::initializeProduceItems(const std::vector<std::string>& items) {
+  for (const std::string& itemName : items) {
+    if (itemName == "Apple") {
+      produceItems.push_back(new Apple);
+    }
+    if (itemName == "Banana") {
+      produceItems.push_back(new Banana);
+    }
+    if (itemName == "Carrot") {
+      produceItems.push_back(new Carrot);
+    }
+  }
+}
+
+void Inventory::initializeDryItems(const std::vector<std::string>& items) {
+  for (const std::string& itemName : items) {
+    if (itemName == "Biscuit") {
+      dryItems.push_back(new Biscuit);
+    }
+    if (itemName == "Bread") {
+      dryItems.push_back(new Bread);
+    }
+    if (itemName == "Chocolate") {
+      dryItems.push_back(new Chocolate);
+    }
+  }
+}
+
+void Inventory::initializeDairyItems(const std::vector<std::string>& items) {
+  for (const std::string& itemName : items) {
+    if (itemName == "Cheese") {
+      dairyItems.push_back(new Cheese);
+    }
+    if (itemName == "Milk") {
+      dairyItems.push_back(new Milk);
+    }
+    if (itemName == "Yoghurt") {
+      dairyItems.push_back(new Yoghurt);
     }
   }
 }

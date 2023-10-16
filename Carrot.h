@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "Item.h"
-
+// class containing information for Carrot object
 class Carrot : public Item{
   private:
 
