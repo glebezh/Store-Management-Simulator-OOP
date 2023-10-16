@@ -6,6 +6,7 @@
 #include "Inventory.h"
 #include "Person.h"
 #include "Random.h"
+// class containing information for Employee object
 
 class Employee : public Person {
  private:
@@ -13,12 +14,13 @@ class Employee : public Person {
   double tipCost;
 
  public:
+ //constructors
   Employee(){};
   Employee(string _name) : Person(_name) {
     wageCost = 50;
     tipCost = 2;
   };
-
+  //get functions
   double getWage() { return wageCost; };
 
   double getTip() { return tipCost; };
@@ -26,7 +28,7 @@ class Employee : public Person {
   void drawWage(Inventory shop) {
     shop.setMoney(shop.getMoney() - wageCost - tipCost);
   }
-
+  //potentials name lists
   void setName() {
     std::vector<std::string> names = {
         "Ila",       "Gunner", "Stevie",    "Kevin",   "Cali",     "Drew",

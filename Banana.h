@@ -2,7 +2,7 @@
 #define BANANA_H
 
 #include <iostream>
-
+// class containing information for Banana object
 #include "Item.h"
 
 class Banana : public Item{

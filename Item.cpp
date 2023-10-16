@@ -1,5 +1,5 @@
 #include "Item.h"
-
+//item member functions
 Item::Item() {
   name = ' ';
   sellPrice = 0;

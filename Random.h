@@ -4,6 +4,7 @@
 #include <string>
 
 #pragma once
+// randomiser
 
 inline void initRandom() { srand(time(0)); }
 

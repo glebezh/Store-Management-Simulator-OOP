@@ -3,9 +3,12 @@
 #include <string>
 #include <vector>
 using namespace std;
+// class containing information for Load object
+
 ifstream inputfile;
 class Load {
  private:
+ //member vars
   string name = "";
   int produceItems = 0;
   int dairyItems = 0;
@@ -25,6 +28,7 @@ class Load {
   int days = 0;
 
  public:
+ //reads a save file for the correct vars to reload
   Load() {
     inputfile.open("save.txt");
     getline(inputfile, name);

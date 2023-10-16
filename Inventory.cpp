@@ -13,11 +13,11 @@
 #include "Item.h"
 #include "Milk.h"
 #include "Yoghurt.h"
-
+//code for inventory function
 Inventory::Inventory() { money = 0; }
 
 Inventory::Inventory(double _money) { money = _money; }
-
+//remove item function based on name info
 void Inventory::removeItem(string name) {
   for (int i = 0; i < produceCounter; i++) {
     if (produceItems[i]->getName() == name) {
@@ -52,7 +52,7 @@ void Inventory::removeItem(string name) {
     }
   }
 }
-
+//buy item functions
 void Inventory::buyItemProduce() {
   int choice = 1;
   int option = 0;
@@ -278,7 +278,7 @@ void Inventory::buyItemDairy() {
   }
   std::cout << " " << std::endl;
 }
-
+// item countern functions
 void Inventory::showproduceItems() {
   std::cout << "Produce Items:" << std::endl;
   for (int i = 0; i < produceCounter; i++) {
@@ -299,7 +299,7 @@ void Inventory::showdairyItems() {
     std::cout << dairyItems[i]->getName() << std::endl;
   }
 }
-
+//expiry checkers
 int Inventory::checkProduceExpiry() {
   int counter = 0;
   for (int i = produceCounter - 1; i >= 0; i--) {
@@ -349,7 +349,7 @@ int Inventory::checkDairyExpiry() {
   };
   return counter;
 }
-
+//add employee functions
 void Inventory::hireEmployee() {
   int choice = 1;
   while (choice == 1) {
@@ -380,7 +380,7 @@ void Inventory::hireEmployee() {
     }
   }
 }
-
+//creating different item type vectors
 void Inventory::initializeProduceItems(const std::vector<std::string>& items) {
   for (const std::string& itemName : items) {
     if (itemName == "Apple") {

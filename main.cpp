@@ -11,6 +11,7 @@ extern void saveGame1(Inventory inven, int days, double rating, string name);
 extern void saveGame2(Inventory inven, int days, double rating, string name);
 
 int main() {
+  //initiallizing vars
   initRandom();
   srand(time(0));
   int dayCounter = 1;
@@ -22,7 +23,7 @@ int main() {
   int saveNow = 2;
 
   std::string storeName = "";
-
+//save check
   std::cout << "Do you want to load a save?" << std::endl;
   std::cout << "Yes (1) or No (0)" << std::endl;
   std::cin >> save;
@@ -49,7 +50,7 @@ int main() {
     std::cout << "Please enter your store name:" << std::endl;
     std::cin >> storeName;
   };
-
+//inventory creation
   Inventory hold(totalMoney);
   if (save == 1) {
     Load loadSave2(2);
@@ -63,8 +64,9 @@ int main() {
     hold.updateInventory(loadSave2.getProduceItems(), loadSave2.getDryItems(),
                          loadSave2.getDairyItems());
   }
-
+//loop decides if game ends
   while ((rating > 0.5) && (totalMoney > 0)) {
+    //tells player info about games state and asks if any stock needs to be purchased
     std::cout << storeName << " is now on Day " << dayCounter << std::endl;
     std::cout << "Your Current Money: $" << totalMoney << std::endl;
     std::cout << "Your Current Rating: " << rating << std::endl;
@@ -179,7 +181,7 @@ int main() {
       break;
     }
   };
-
+//rating check, if lower than 0.5 game ends
   if (rating < 0.5) {
     system("clear");
     std::cout << "Game Over" << std::endl;

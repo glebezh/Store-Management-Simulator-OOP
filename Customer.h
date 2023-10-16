@@ -8,6 +8,7 @@
 #include "Person.h"
 #include "Random.h"
 using namespace std;
+// class containing information for Customer object
 
 std::vector<std::string> products = {"Apple",     "Banana", "Biscuit",
                                      "Bread",     "Carrot", "Cheese",
@@ -15,6 +16,7 @@ std::vector<std::string> products = {"Apple",     "Banana", "Biscuit",
 
 class Customer : public Person {
  private:
+ //variables for customer
   double moneySpent = 0;
   int itemCounter = 0;
   string wantedItem1 = "";
@@ -23,6 +25,7 @@ class Customer : public Person {
   double rating = 0;
 
  public:
+ //constructors
   Customer() {
     name = "";
     wantedItem1 = "";
@@ -36,10 +39,11 @@ class Customer : public Person {
     moneySpent = 0;
     itemCounter = 0;
   }
+  //get functions
   string getName() { return name; }
 
   double getMoneySpent() { return moneySpent; };
-
+  //fcuntion that buys from the inventory 
   void buyFromInventory1(Inventory& inventory) {
     Item* item = nullptr;
 
@@ -135,7 +139,7 @@ class Customer : public Person {
       }
     }
   }
-
+  //inventory counter
   int itemsBought() {
     if (itemCounter == 3) {
       rating = 3;
@@ -152,7 +156,7 @@ class Customer : public Person {
     };
     return itemCounter;
   };
-
+  //rating adjsutment
   double setRating(double currentRating) {
     double newRating = 0;
 
@@ -162,7 +166,7 @@ class Customer : public Person {
   }
 
   void setName(std::string setName) { name = setName; };
-
+  //randomly setting desired items
   string getDesiredItem1() { return wantedItem1; };
   string getDesiredItem2() { return wantedItem2; };
   string getDesiredItem3() { return wantedItem3; };
