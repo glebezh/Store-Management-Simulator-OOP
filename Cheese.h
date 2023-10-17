@@ -1,11 +1,9 @@
 #ifndef CHEESE_H
 #define CHEESE_H
 
-#include <iostream>
-
 #include "Item.h"
-// class containing information for Cheese object
 
+// class containing information for Cheese object
 class Cheese : public Item {
  private:
  public:

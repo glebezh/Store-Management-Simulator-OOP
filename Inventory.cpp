@@ -13,7 +13,7 @@
 #include "Item.h"
 #include "Milk.h"
 #include "Yoghurt.h"
-#include "Random.h"
+#include "Functions.h"
 
 //Functions for inventory class
 
@@ -46,7 +46,6 @@ void Inventory::removeItem(string name) {
   }
 
   for (int i = 0; i < dryCounter; i++) {
-
     if (dryItems[i]->getName() == name) {
 
       // Deallocate the memory of the item
@@ -100,47 +99,18 @@ void Inventory::buyItemProduce() {
       std::cin >> choice;
 
       // Input validation
-      while (true) {
-        std::cin >> choice;
-        if (std::cin.good() && (option == 0)) {
-          break;
-        } else {
-          std::cin.clear();
-          std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-          std::cout << "Please enter a valid number (0)." << std::endl;
-        }
-      }
-    }
-
+      getValidInput(choice, 0,0,0, "Please enter a valid value");
+      std::cout << std::endl;
+    };
+    
     // Ask the user whether they want to buy produce
     std::cout << "Money Remaining: $" << money << std::endl;
     std::cout << "Do you wish to buy Produce (Apples, Bananas or Carrots)?" << std::endl;
     std::cout << "Enter 1 for Yes or 0 for No." << std::endl;
 
     // Input validation
-    while (true) {
-      std::cin >> choice;
-      if (std::cin.good() && (choice == 0 || choice == 1)) {
-        break;
-      } else {
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-        std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
-      }
-    }
+    getValidInput(choice, 0,0,1, "Please enter a valid number (1 for Yes, 0 for no)");
     std::cout << std::endl;
-
-    // std::cin >> choice;
-
-    // while ((choice != 1) && (choice != 0)  ) {
-    //   std::cout << "Please enter a valid number" << std::endl;
-    //   std::cout << "Money Remaining: $" << money << std::endl;
-    //   std::cout << "Do you wish to buy Produce (Apples, Bananas or Carrots)?"
-    //             << std::endl;
-    //   std::cout << "Enter 1 for Yes or 0 for No." << std::endl;
-    //   std::cin >> choice;
-    //   std::cout << "\n";
-    // }
 
     // If the user wants to purchase produce, the program asks the user which produce 
     //item they want to purchase.
@@ -153,16 +123,8 @@ void Inventory::buyItemProduce() {
       std::cout << "Produce Number: ";
 
       // Input validation
-      while (true) {
-        std::cin >> option;
-        if (std::cin.good() && (option >= 1 && option <= 3)) {
-          break;
-        } else {
-          std::cin.clear();
-          std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-          std::cout << "Please enter a valid number (1, 2, or 3)" << std::endl;
-        }
-      }
+      getValidInput(option, 1,2,3, "Please enter a valid number (1, 2 or 3)");
+      std::cout << std::endl;
 
       // Create a new dynamically allocated item and depending on option chosen by 
       // user make it an apple, banana or carrot.
@@ -212,40 +174,21 @@ void Inventory::buyItemDry() {
   while (choice == 1 && money >= 0) {
     if (dryCounter == 1000) {
       std::cout << "Maximum Capacity for Dry has been reached." << std::endl;
-      std::cout << "Press any key to continue" << std::endl;
-      std::cin >> choice;
-      break;
+      std::cout << "Enter 0 to continue" << std::endl;
 
+      // Input validation
+      getValidInput(choice, 0,0,0, "Please enter a valid value");
+      std::cout << std::endl;
     }
     // Ask the user whether they want to buy dry items.
     std::cout << "Money Remaining: $" << money << std::endl;
     std::cout << "Do you wish to buy Dry (Biscuit, Bread or Chocolate)?" << std::endl;
     std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
 
-    // Input validation
-    while (true) {
-      std::cin >> choice;
-      if (std::cin.good() && (choice == 0 || choice == 1)) {
-        break;
-      } else {
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-        std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
-      }
-    }
+    //Input Validation
+    getValidInput(choice, 0,1,1, "Please enter a valid number (1 for Yes, 0 for No)");
     std::cout << std::endl;
-
-    // std::cin >> choice;
-
-
-    // while ((choice != 1) && (choice != 0)) {
-    //   std::cout << "Please enter a valid number" << std::endl;
-    //   std::cout << "Money Remaining: $" << money << std::endl;
-    //   std::cout << "Do you wish to buy Dry (Biscuit, Bread or Chocolate)?"
-    //             << std::endl;
-    //   std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
-    //   std::cin >> choice;
-    // }
+  
 
     // If the user wants to purchase dry items, the program asks the user which items 
     // item they want to purchase.
@@ -257,16 +200,8 @@ void Inventory::buyItemDry() {
       std::cout << std::endl;
       std::cout << "Dry Number: ";
 
-      while (true) {
-        std::cin >> option;
-        if (std::cin.good() && (option >= 1 && option <= 3)) {
-          break;
-        } else {
-          std::cin.clear();
-          std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-          std::cout << "Please enter a valid number (1, 2, or 3)" << std::endl;
-        }
-      }
+      getValidInput(option, 1,2,3, "Please enter a valid number (1, 2 or 3)");
+      std::cout << std::endl;
 
       // Create a new dynamically allocated item and depending on option chosen by 
       // user make it a biscuit, bread or chocolate item.
@@ -317,8 +252,10 @@ void Inventory::buyItemDairy() {
     if (dairyCounter == 1000) {
       std::cout << "Maximum Capacity for Dairy has been reached." << std::endl;
       std::cout << "Enter 0 to continue" << std::endl;
-      std::cin >> choice;
-      break;
+      
+      // Input validation
+      getValidInput(choice, 0,0,0, "EPlease enter a valid value");
+      std::cout << std::endl;
     }
 
     // Ask the user whether they want to but Dairy items.
@@ -326,28 +263,11 @@ void Inventory::buyItemDairy() {
     std::cout << "Do you wish to buy Dairy (Cheese, Milk or Yoghurt)?"<< std::endl;
     std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
 
-    // Input validation
-    while (true) {
-      std::cin >> choice;
-      if (std::cin.good() && (choice == 0 || choice == 1)) {
-        break;
-      } else {
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-        std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
-      }
-    }
+    // Input Validation
+    getValidInput(choice, 0,1,1, "Please enter a valid number (1 for Yes, 0 for No)");
     std::cout << std::endl;
-    // std::cin >> choice;
-    // while ((choice != 1) && (choice != 0)) {
-    //   std::cout << "Please enter a valid number" << std::endl;
-    //   std::cout << "Money Remaining: $" << money << std::endl;
-    //   std::cout << "Do you wish to buy Dairy (Cheese, Milk or Yoghurt)?"
-    //             << std::endl;
-    //   std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
-    //   std::cin >> choice;
-    // }
 
+  
     // If the user wants to purchase dairy items, the program asks the user which items 
     // they want to purchase.
     if (choice == 1) {
@@ -359,16 +279,8 @@ void Inventory::buyItemDairy() {
       std::cout << "Dairy Number: ";
 
       // Input Validation
-      while (true) {
-        std::cin >> option;
-        if (std::cin.good() && (option >= 1 && option <= 3)) {
-          break;
-        } else {
-          std::cin.clear();
-          std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-          std::cout << "Please enter a valid number (1, 2, or 3)" << std::endl;
-        }
-      }
+      getValidInput(option, 1,2,3, "Please enter a valid number (1, 2 or 3)");
+      std::cout << std::endl;
 
       // Create a new dynamically allocated item and depending on option chosen by 
       // user make it a cheese, milk or yoghurt item.
@@ -535,25 +447,14 @@ void Inventory::hireEmployee() {
   while (choice == 1) {
 
     // Ask the user whether they want to hire an employee.
-
     std::cout << "Money Remaining: $" << money << std::endl;
     std::cout << "Do you wish to hire an Employee?" << std::endl;
     std::cout << "(-$10.00 per day) (+$2.00 per customer)" << std::endl;
     std::cout << "Enter 1 for Yes 0 for No" << std::endl;
-
-
+    
     // Input Validation
-    while (true) {
-      std::cin >> choice;
-      if (std::cin.good() && (choice == 0 || choice == 1)) {
-        break;
-      } else {
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-        std::cout << "Please enter a valid number (1 for Yes, 0 for No)"
-                  << std::endl;
-      }
-    }
+    getValidInput(choice, 0,0,1, "Please enter a valid number (1 for Yes, 0 for No)");
+    std::cout << std::endl;
 
     // If the user does, perform some preliminary checks to ensure the user has enough money.
     if (choice == 1) {
@@ -562,7 +463,6 @@ void Inventory::hireEmployee() {
                   << std::endl;
         break;
       }
-
       // Create an employee and set the name.
       Employee employee;
       employee.setName();

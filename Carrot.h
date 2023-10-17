@@ -1,9 +1,8 @@
 #ifndef CARROT_H
 #define CARROT_H
 
-#include <iostream>
-
 #include "Item.h"
+
 // class containing information for Carrot object
 class Carrot : public Item {
  private:

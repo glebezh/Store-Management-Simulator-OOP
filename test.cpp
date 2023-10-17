@@ -10,7 +10,7 @@
 #include "Customer.h"
 #include "Employee.h"
 #include "Inventory.h"
-#include "Random.h"
+#include "Functions.h"
 
 int main() {
   initRandom();

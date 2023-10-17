@@ -2,34 +2,29 @@
 #define EMPLOYEE_H
 
 #include <string>
-
 #include "Inventory.h"
 #include "Person.h"
-#include "Random.h"
-// class containing information for Employee object
+#include "Functions.h"
 
+// Class containing information for Employee object
 class Employee : public Person {
  private:
   double wageCost;
   double tipCost;
-
  public:
- //constructors
+ //Constructors
   Employee(){};
   Employee(string _name):Person(_name){
      wageCost = 10;
      tipCost = 2;
   };
-  //get functions
+  //Get and set functions
   double getWage() { return wageCost; };
-
   double getTip() { return tipCost; };
-
   void drawWage(Inventory& inventory){
     inventory.setMoney(inventory.getMoney() - wageCost + tipCost);
   }
 
-  //potentials name lists
   void setName() {
     std::vector<std::string> names = {
         "Ila",      "Gunner", "Stevie",    "Kevin",   "Cali",     "Drew",
@@ -43,9 +38,8 @@ class Employee : public Person {
         "Kai",       "Roy",    "Sevyn",     "Madden",  "Dalayza",  "Felipe",
         "Madeline",  "Collin", "Lennox",    "Braylen", "Winnie",   "Connor"};
 
-    name = (names[generateRandom(0, names.size() - 1)]);
-    ;
-  }
+    name = names[generateRandom(0, names.size() - 1)];
+  };
 };
 
 #endif

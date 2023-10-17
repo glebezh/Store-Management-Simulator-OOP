@@ -1,12 +1,14 @@
 #include <fstream>
 #include <iostream>
 #include <limits>
+#include <string>
 
 #include "Customer.h"
 #include "Employee.h"
 #include "Inventory.h"
 #include "Load.h"
-#include "Random.h"
+#include "Functions.h"
+
 
 // These functions are in a different file
 extern void saveGame1(Inventory inven, int days, double rating, string name);
@@ -27,23 +29,15 @@ int main() {
 
   std::cout << "Welcome to the Store Management Simulator!" << std::endl;
 
-
   std::string storeName = "";
+
   // Prompt the user to load in a save if they want.
   std::cout << "Would you like to load a save?" << std::endl;
   std::cout << "Yes (1) or No (0)" << std::endl;
 
-  // Input validation
-  while (true) {
-    std::cin >> save;
-    if (std::cin.good() && (save == 1 || save == 0)) {
-      break;
-    } else {
-      std::cin.clear();
-      std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-      std::cout << "Please enter a valid value." << std::endl;
-    }
-  }
+  // Run the getValidInput function to validate user input.
+  getValidInput(save, 0,0,1, "Please enter a valid number value (0 or 1)");
+  std::cout << std::endl;
 
   // If the user wants to load in a save, create a load object and set variables to values from the object.
   if (save == 1) {
@@ -54,7 +48,7 @@ int main() {
     rating = loadSave.getRating();
     totalMoney = loadSave.getMoney();
     dayCounter = loadSave.getDays();
-    
+
   };
 
   // Allows the user to enter a desired name for the store.
@@ -112,20 +106,9 @@ int main() {
     hold.hireEmployee();
     std::cout << "" << std::endl;
     std::cout << "Enter 0 to start the day" << std::endl;
-    // std::cin >> random;
 
-    // Input validation
-    while (true) {
-        std::cin >> random;
-        if (std::cin.good() && (random == 0)) {
-            break;
-        } else {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-            std::cout << "Please enter a valid value." << std::endl;
-        }
-    }
-
+    // Run the getValidInput function to validate user input.
+    getValidInput(random, 0,0,0, "Please enter a valid value.");
     std::cout << std::endl;
 
     // Generate a random number of customers using the generateRandom function.
@@ -179,7 +162,6 @@ int main() {
     std::cout << std::endl;
 
     // Run functions to check which items have expired from inventory.
-
     std::cout << hold.checkProduceExpiry() << " Produce Items have Expired"
               << std::endl;
     std::cout << hold.checkDryExpiry() << " Dry Items have Expired"
@@ -188,11 +170,10 @@ int main() {
               << std::endl;
     std::cout << "" << std::endl;
 
-    // Print current money and current rating
+    // Print current money and current rating.
     std::cout << "Current Money:" << hold.getMoney() << std::endl;
 
     rating = roundToNDecimalPlaces(rating + (hold.getEmployeeCount() * 0.2), 2);
-
     std::cout << "Current Rating:" <<  rating << std::endl;
     std::cout << "" << std::endl;
 
@@ -201,39 +182,22 @@ int main() {
     std::cout << "Enter 0 to Continue" << std::endl;
 
     // Input validation
-    while (true) {
-        std::cin >> choice;
-        if (std::cin.good() && (choice == 0)) {
-            break;
-        } else {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-            std::cout << "Please enter a valid value." << std::endl;
-        }
-    }
-
+    getValidInput(choice, 0,0,0, "Please enter a valid value.");
     std::cout << std::endl;
 
     //Increment day by one and reset the employees at the store.
     dayCounter = dayCounter + 1;
     hold.resetEmployee();
 
+    // Ask the user whether they want to save game
     std::cout << "Do you want to save now?" << std::endl;
     std::cout << "Yes (1) or No (0)" << std::endl;
 
-    // Input Validation
-    while (true) {
-      std::cin >> saveNow;
-      if (std::cin.good() && (saveNow == 0 || saveNow == 1)) {
-        break;
-      } else {
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-        std::cout << "Please enter a valid number (1 for Yes, 0 for No)"
-                  << std::endl;
-      }
-    }
+    // Input validation
+    getValidInput(saveNow, 0,0,1, "Please enter a valid number (1 for Yes, 0 for No)");
+    std::cout << std::endl;  
 
+    // If user decides to savegame, run the appropriate functions and let the user know. 
     if (saveNow == 1) {
       saveGame1(hold, dayCounter, rating, storeName);
       saveGame2(hold, dayCounter, rating, storeName);
@@ -250,6 +214,7 @@ int main() {
               << std::endl;
     std::cout << "Better Luck Next Time" << std::endl;
   }
+
   // Inventory money check, if lower than or equal to 0, game ends. 
   if (hold.getMoney() <= 0) {
     system("clear");

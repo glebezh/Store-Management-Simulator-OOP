@@ -2,14 +2,14 @@
 #define CUSTOMER_H
 
 #include <string>
-
 #include "Inventory.h"
 #include "Item.h"
 #include "Person.h"
-#include "Random.h"
-using namespace std;
-// class containing information for Customer object
+#include "Functions.h"
 
+using namespace std;
+
+// Class containing information for Customer object
 class Customer : public Person {
  private:
  //variables for customer
@@ -39,108 +39,215 @@ class Customer : public Person {
     itemCounter = 0;
     rating = 0;
   }
-  //get functions
+  //Get and Set functions
   string getName() { return name; }
-
   double getMoneySpent() { return moneySpent; };
-  //fcuntion that buys from the inventory 
+  void setName(std::string setName) { name = setName; };
+
+  string getDesiredItem1() { return wantedItem1; };
+  string getDesiredItem2() { return wantedItem2; };
+  string getDesiredItem3() { return wantedItem3; };
+
+  void setDesiredItem1(std::string itemName) { wantedItem1 = itemName; };
+  void setDesiredItem2(std::string itemName) { wantedItem2 = itemName; };
+  void setDesiredItem3(std::string itemName) { wantedItem3 = itemName; };
+
+  // Void function which allows customers to purchase items from the inventory.
+  // Accepts an inventory as the argument.
   void buyFromInventory1(Inventory& inventory) {
     Item* item = nullptr;
 
     for (int i = 0; i < inventory.getProduceCounter(); i++) {
+      // Use an if statement to check whether the item desired by the customer is 
+      // located in the inventory.
       if (inventory.getProduceItems()[i]->getName() == wantedItem1) {
+
+        // Set the item variable to the chosen item.
         item = inventory.getProduceItems()[i];
+
+        // Increment the number of items by 1. 
         itemCounter++;
-        // inventory.setMoney(inventory.getMoney()+ item->getSellPrice()); 
-        moneySpent = moneySpent + item->getSellPrice(); // why do we need this here?
+
+        // Set the moneyspent by the customer. 
+        moneySpent = moneySpent + item->getSellPrice();
+
+        //Remove the item from the inventory using inventory.removeItem() function.
         inventory.removeItem(item->getName());
         break;
       }
     }
+
     for (int i = 0; i < inventory.getDryCounter(); i++) {
+      // Use an if statement to check whether the item desired by the customer is 
+      // located in the inventory.
       if (inventory.getDryItems()[i]->getName() == wantedItem1) {
+
+        // Set the item variable to the chosen item.
         item = inventory.getDryItems()[i];
+
+        // Increment the number of items by 1. 
         itemCounter++;
+
+        // Set the moneyspent by the customer. 
         moneySpent = moneySpent + item->getSellPrice();
+
+        //Remove the item from the inventory using inventory.removeItem() function.
         inventory.removeItem(item->getName());
         break;
       }
     }
     for (int i = 0; i < inventory.getDairyCounter(); i++) {
+      // Use an if statement to check whether the item desired by the customer is 
+      // located in the inventory.
       if (inventory.getDairyItems()[i]->getName() == wantedItem1) {
+
+        // Set the item variable to the chosen item.
         item = inventory.getDairyItems()[i];
+
+        // Increment the number of items by 1.
         itemCounter++;
+
+        // Set the moneyspent by the customer.
         moneySpent = moneySpent + item->getSellPrice();
+
+        //Remove the item from the inventory using inventory.removeItem() function.
         inventory.removeItem(item->getName());
         break;
       }
     }
   }
-
+  
+  // Void function which allows customers to purchase items from the inventory.
+  // Accepts an inventory as the argument.
   void buyFromInventory2(Inventory& inventory) {
     Item* item = nullptr;
 
     for (int i = 0; i < inventory.getProduceCounter(); i++) {
+      // Use an if statement to check whether the item desired by the customer is 
+      // located in the inventory.
       if (inventory.getProduceItems()[i]->getName() == wantedItem2) {
+        
+        // Set the item variable to the chosen item.
         item = inventory.getProduceItems()[i];
+
+        // Increment the number of items by 1.
         itemCounter++;
+
+        // Set the moneyspent by the customer.
         moneySpent = moneySpent + item->getSellPrice();
+
+        //Remove the item from the inventory using inventory.removeItem() function.
         inventory.removeItem(item->getName());
         break;
       }
     }
     for (int i = 0; i < inventory.getDryCounter(); i++) {
+      // Use an if statement to check whether the item desired by the customer is 
+      // located in the inventory.
       if (inventory.getDryItems()[i]->getName() == wantedItem2) {
+
+        // Set the item variable to the chosen item.
         item = inventory.getDryItems()[i];
+
+        // Increment the number of items by 1.
         itemCounter++;
+
+        // Set the moneyspent by the customer.
         moneySpent = moneySpent + item->getSellPrice();
+
+        //Remove the item from the inventory using inventory.removeItem() function.
         inventory.removeItem(item->getName());
         break;
       }
     }
+
     for (int i = 0; i < inventory.getDairyCounter(); i++) {
+      // Use an if statement to check whether the item desired by the customer is 
+      // located in the inventory.
       if (inventory.getDairyItems()[i]->getName() == wantedItem2) {
+
+        // Set the item variable to the chosen item.
         item = inventory.getDairyItems()[i];
+
+        // Increment the number of items by 1.
         itemCounter++;
+
+        // Set the moneyspent by the customer.
         moneySpent = moneySpent + item->getSellPrice();
+
+        //Remove the item from the inventory using inventory.removeItem() function.
         inventory.removeItem(item->getName());
         break;
       }
     }
   };
 
+  // Void function which allows customers to purchase items from the inventory.
+  // Accepts an inventory as the argument.
   void buyFromInventory3(Inventory& inventory) {
     Item* item = nullptr;
 
     for (int i = 0; i < inventory.getProduceCounter(); i++) {
+      // Use an if statement to check whether the item desired by the customer is 
+      // located in the inventory.
       if (inventory.getProduceItems()[i]->getName() == wantedItem3) {
+
+        // Set the item variable to the chosen item.
         item = inventory.getProduceItems()[i];
+        
+        // Increment the number of items by 1.
         itemCounter++;
+
+        // Set the moneyspent by the customer.
         moneySpent = moneySpent + item->getSellPrice();
+
+        //Remove the item from the inventory using inventory.removeItem() function.
         inventory.removeItem(item->getName());
         break;
       }
     }
     for (int i = 0; i < inventory.getDryCounter(); i++) {
+      // Use an if statement to check whether the item desired by the customer is 
+      // located in the inventory.
       if (inventory.getDryItems()[i]->getName() == wantedItem3) {
+
+        // Set the item variable to the chosen item.
         item = inventory.getDryItems()[i];
+        
+        // Increment the number of items by 1.
         itemCounter++;
+
+        // Set the moneyspent by the customer.
         moneySpent = moneySpent + item->getSellPrice();
+
+        //Remove the item from the inventory using inventory.removeItem() function.
         inventory.removeItem(item->getName());
         break;
       }
     }
     for (int i = 0; i < inventory.getDairyCounter(); i++) {
+      // Use an if statement to check whether the item desired by the customer is 
+      // located in the inventory.
       if (inventory.getDairyItems()[i]->getName() == wantedItem3) {
+
+        // Set the item variable to the chosen item.
         item = inventory.getDairyItems()[i];
+
+        // Increment the number of items by 1.
         itemCounter++;
+
+        // Set the moneyspent by the customer.
         moneySpent = moneySpent + item->getSellPrice();
+
+        //Remove the item from the inventory using inventory.removeItem() function.
         inventory.removeItem(item->getName());
         break;
       }
     }
   }
-  //inventory counter
+  
+  // Simple function to determine the store rating based on the number of items 
+  // the customer was able to purchase.
   int itemsBought() {
     if (itemCounter == 3) {
       rating = 3;
@@ -157,23 +264,15 @@ class Customer : public Person {
     };
     return itemCounter;
   };
-  //rating adjsutment
+
+  // Simple function to adjust the store rating based on the 
+  // number of items the next customer was able to purchase
   double setRating(double currentRating) {
     double newRating = 0;
-
     newRating = (currentRating + rating) / 2;
-
     return newRating;
   }
 
-  void setName(std::string setName) { name = setName; };
-  //randomly setting desired items
-  string getDesiredItem1() { return wantedItem1; };
-  string getDesiredItem2() { return wantedItem2; };
-  string getDesiredItem3() { return wantedItem3; };
-
-  void setDesiredItem1(std::string itemName) { wantedItem1 = itemName; };
-  void setDesiredItem2(std::string itemName) { wantedItem2 = itemName; };
-  void setDesiredItem3(std::string itemName) { wantedItem3 = itemName; };
 };
+
 #endif

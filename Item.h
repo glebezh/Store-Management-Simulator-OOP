@@ -2,12 +2,13 @@
 #define ITEM_H
 
 #include <string>
-using namespace std;
-// class containing information for Item object
 
+using namespace std;
+
+// Abstract Class containing information for Item object
 class Item {
  protected:
-  // member vars, inherited by all other items
+  // member variables, inherited by all other items
   string name;
   double sellPrice;
   double purchasePrice;
@@ -28,7 +29,7 @@ class Item {
   int getCounter() { return counter; }
   void setCounter(int _counter) { counter = _counter; }
 
-  // checks the expiry on items
+  // Virtual bool function to check the expiry of items.
   virtual bool determineExpiry() {
     if (counter == 3) {
       expired = true;

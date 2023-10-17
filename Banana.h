@@ -1,10 +1,9 @@
 #ifndef BANANA_H
 #define BANANA_H
 
-#include <iostream>
-// class containing information for Banana object
 #include "Item.h"
 
+// Class containing information for Banana object
 class Banana : public Item {
  private:
  public:

@@ -1,10 +1,9 @@
 #ifndef YOGHURT_H
 #define YOGHURT_H
 
-#include <iostream>
-
 #include "Item.h"
 
+//Class containing information for Yoghurt object
 class Yoghurt : public Item {
  private:
  public:

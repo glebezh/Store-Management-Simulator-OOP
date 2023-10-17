@@ -1,9 +1,8 @@
 #ifndef BREAD_H
 #define BREAD_H
 
-#include <iostream>
-
 #include "Item.h"
+
 // class containing information for Bread object
 class Bread : public Item {
  private:

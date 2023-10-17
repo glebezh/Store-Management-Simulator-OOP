@@ -1,11 +1,9 @@
 #ifndef MILK_H
 #define MILK_H
 
-#include <iostream>
-
 #include "Item.h"
-// class containing information for Milk object
 
+// Class containing information for Milk object
 class Milk : public Item {
  private:
  public:
