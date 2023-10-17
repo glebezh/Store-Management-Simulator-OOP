@@ -1,6 +1,7 @@
 #include "Inventory.h"
 
 #include <iostream>
+#include <limits>
 
 #include "Apple.h"
 #include "Banana.h"
@@ -20,7 +21,7 @@
 Inventory::Inventory() { money = 0; }
 
 Inventory::Inventory(double _money) { money = _money; }
-//remove item function based on name info
+// remove item function based on name info
 void Inventory::removeItem(string name) {
   for (int i = 0; i < produceCounter; i++) {
     if (produceItems[i]->getName() == name) {
@@ -55,7 +56,7 @@ void Inventory::removeItem(string name) {
     }
   }
 }
-//buy item functions
+// buy item functions
 void Inventory::buyItemProduce() {
   int choice = 1;
   int option = 0;
@@ -72,14 +73,14 @@ void Inventory::buyItemProduce() {
         std::cin >> choice;
       }
       break;
-
     }
     std::cout << "Money Remaining: $" << money << std::endl;
-    std::cout << "Do you wish to buy Produce (Apples, Bananas or Carrots)?" //problem
-              << std::endl;
+    std::cout
+        << "Do you wish to buy Produce (Apples, Bananas or Carrots)?"  // problem
+        << std::endl;
     std::cout << "Enter 1 for Yes or 0 for No." << std::endl;
 
-    //input validation
+    // input validation
     while (true) {
       std::cin >> choice;
       if (std::cin.good() && (choice == 0 || choice == 1)) {
@@ -136,8 +137,7 @@ void Inventory::buyItemProduce() {
       }
 
       if (money - newItem->getPurchasePrice() < 0) {
-        std::cout << "You don't have enough money for this item."
-                  << std::endl;
+        std::cout << "You don't have enough money for this item." << std::endl;
         delete newItem;
       } else {
         std::cout << newItem->getName() << " was added to the inventory."
@@ -146,9 +146,9 @@ void Inventory::buyItemProduce() {
         produceItems.push_back(newItem);
         money -= newItem->getPurchasePrice();
         produceCounter++;
-        }
       }
     }
+  }
 
   std::cout << "Items Bought:" << std::endl;
   for (int i = 0; i < produceCounter; i++) {
@@ -168,11 +168,12 @@ void Inventory::buyItemDry() {
       break;
     }
     std::cout << "Money Remaining: $" << money << std::endl;
-    std::cout << "Do you wish to buy Dry (Biscuit, Bread or Chocolate)?" //problem
-              << std::endl;
+    std::cout
+        << "Do you wish to buy Dry (Biscuit, Bread or Chocolate)?"  // problem
+        << std::endl;
     std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
 
-    //input validation
+    // input validation
     while (true) {
       std::cin >> choice;
       if (std::cin.good() && (choice == 0 || choice == 1)) {
@@ -205,7 +206,7 @@ void Inventory::buyItemDry() {
                 << std::endl;
       std::cout << std::endl;
       std::cout << "Dry Number: ";
-      
+
       while (true) {
         std::cin >> option;
         if (std::cin.good() && (option >= 1 && option <= 3)) {
@@ -227,8 +228,7 @@ void Inventory::buyItemDry() {
       }
 
       if (money - newItem->getPurchasePrice() < 0) {
-        std::cout << "You don't have enough money for this item."
-                  << std::endl;
+        std::cout << "You don't have enough money for this item." << std::endl;
         delete newItem;
       } else {
         std::cout << newItem->getName() << " was added" << std::endl;
@@ -261,7 +261,7 @@ void Inventory::buyItemDairy() {
               << std::endl;
     std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
 
-    //input validation
+    // input validation
     while (true) {
       std::cin >> choice;
       if (std::cin.good() && (choice == 0 || choice == 1)) {
@@ -312,8 +312,7 @@ void Inventory::buyItemDairy() {
       }
 
       if (money - newItem->getPurchasePrice() < 0) {
-        std::cout << "You don't have enough money for this item."
-                  << std::endl;
+        std::cout << "You don't have enough money for this item." << std::endl;
         delete newItem;
       } else {
         std::cout << newItem->getName() << " was added" << std::endl;
@@ -330,7 +329,7 @@ void Inventory::buyItemDairy() {
   }
   std::cout << " " << std::endl;
 }
-// item countern functions
+// functions allow user to see their inventory
 void Inventory::showproduceItems() {
   std::cout << "Produce Items:" << std::endl;
   for (int i = 0; i < produceCounter; i++) {
@@ -351,7 +350,7 @@ void Inventory::showdairyItems() {
     std::cout << dairyItems[i]->getName() << std::endl;
   }
 }
-//expiry checkers
+// expiry checkers to decide whether to delete expired items from inventory
 int Inventory::checkProduceExpiry() {
   int expired_items = 0;
   for (int i = produceCounter - 1; i >= 0; i--) {
@@ -419,9 +418,11 @@ void Inventory::hireEmployee() {
       } else {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-        std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
+        std::cout << "Please enter a valid number (1 for Yes, 0 for No)"
+                  << std::endl;
       }
     }
+
 
     if (choice == 1) {
       if (money - wage < 0) {
@@ -437,7 +438,7 @@ void Inventory::hireEmployee() {
     }
   }
 }
-//creating different item type vectors
+// creating different item type vectors based on save file
 void Inventory::initializeProduceItems(const std::vector<std::string>& items) {
   for (const std::string& itemName : items) {
     if (itemName == "Apple") {

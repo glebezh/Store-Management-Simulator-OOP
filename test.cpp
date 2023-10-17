@@ -1,3 +1,10 @@
+// This tests the functionality of the all Classes and functions except saving
+// This test acts a shell for the final code
+
+// To run this test use:
+//  g++ test.cpp Item.cpp Inventory.cpp -o "test"
+// ./test
+
 #include <iostream>
 
 #include "Customer.h"
@@ -8,38 +15,47 @@
 int main() {
   initRandom();
   srand(time(0));
+
+  // Initializes the store settings
   int dayCounter = 1;
   double totalMoney = 100;
   double rating = 3;
   int choice = 0;
   int random = 0;
 
+  // Creates an Inventory
   Inventory hold(totalMoney);
 
+  // While loop will determine when the game ends
   while ((rating > 0.5) && (totalMoney > 0)) {
     system("clear");
+    // Displays the current values
     std::cout << "Day " << dayCounter << std::endl;
     std::cout << "Your Current Money: $" << totalMoney << std::endl;
     std::cout << "Your Current Rating: " << rating << std::endl;
+    // Generates a random number of customers based on the number of days
     int numCustomers = generateRandom(1, 2 * dayCounter + 1);
     std::cout << "" << std::endl;
-
+    // Displays the Inventory
     std::cout << "Current Inventory:" << std::endl;
     hold.showproduceItems();
     hold.showdryItems();
     hold.showdairyItems();
     std::cout << "" << std::endl;
 
+    // Allows the player to purchase items
     hold.buyItemProduce();
     hold.buyItemDry();
     hold.buyItemDairy();
 
+    // Displays new Inventory
     std::cout << "New Inventory:" << std::endl;
     hold.showproduceItems();
     hold.showdryItems();
     hold.showdairyItems();
     std::cout << "" << std::endl;
 
+    // Allows the player to hire employees
     hold.hireEmployee();
     std::cout << "" << std::endl;
     std::cout << "Enter 0 to start the day" << std::endl;
@@ -50,6 +66,8 @@ int main() {
       std::cin >> random;
     }
 
+    // Generates the customers items and allows them to remove items from
+    // inventory
     for (int i = 0; i < numCustomers; i++) {
       Customer customer;
 
@@ -94,6 +112,7 @@ int main() {
               << std::endl;
 
     std::cout << "" << std::endl;
+    // Displays the new store values
     std::cout << "Current Money:" << totalMoney << std::endl;
 
     rating = rating + (hold.getEmployeeCount() * 0.2);
@@ -114,7 +133,7 @@ int main() {
     dayCounter = dayCounter + 1;
     hold.resetEmployee();
   };
-
+  // Displays when while loop breaks
   std::cout << "Game Over" << std::endl;
 
   if (rating < 0.5) {

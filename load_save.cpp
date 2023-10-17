@@ -6,6 +6,7 @@ using namespace std;
 ofstream myfile;
 void saveGame1(Inventory inven, int days, double rating, string name) {
   myfile.open("save.txt");
+  // Saves name, days, rating and money into save file
   myfile << name << endl;
   myfile << to_string(days) << endl;
   myfile << to_string(rating) << endl;
@@ -82,6 +83,7 @@ void saveGame1(Inventory inven, int days, double rating, string name) {
 
 void saveGame2(Inventory inven, int days, double rating, string name) {
   myfile.open("save2.txt");
+  // Saves name, days, rating and money into save file
   myfile << name << endl;
   myfile << to_string(days) << endl;
   myfile << to_string(rating) << endl;

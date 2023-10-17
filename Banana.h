@@ -5,18 +5,18 @@
 // class containing information for Banana object
 #include "Item.h"
 
-class Banana : public Item{
-  private:
-  public:
-    Banana(): Item("Banana", 1.25, 0.90, false, 0){
-    };
-    ~Banana(){};
+class Banana : public Item {
+ private:
+ public:
+  Banana() : Item("Banana", 1.25, 0.90, false, 0){};
+  ~Banana(){};
 
-    bool determineExpiry() override{
-      if (counter == 3){
-        expired = true;
-      };
-      return expired;
+  bool determineExpiry() override {
+    if (counter == 3) {
+      expired = true;
+    };
+    counter = counter + 1;
+    return expired;
   }
 };
 
