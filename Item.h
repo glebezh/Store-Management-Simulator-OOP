@@ -7,7 +7,7 @@ using namespace std;
 
 class Item {
  protected:
- //member vars, inherited by all other items
+  // member vars, inherited by all other items
   string name;
   double sellPrice;
   double purchasePrice;
@@ -15,26 +15,26 @@ class Item {
   int counter;
 
  public:
- //constructors
+  // constructors
   Item();
   Item(string _name, double _sellPrice, double _purchasePrice, bool _expired,
        int _counter);
   ~Item(){};
-  //get functions
+  // get functions
   string getName() { return name; }
   double getSellPrice() { return sellPrice; }
   double getPurchasePrice() { return purchasePrice; }
   bool getExpired() { return expired; }
-  int getCounter(){return counter;}
-  void setCounter(int _counter){
-    counter = _counter;
-  }
-  
-  virtual bool determineExpiry(){
-      if (counter == 3){
-        expired = true;
-      };
-      return expired;
+  int getCounter() { return counter; }
+  void setCounter(int _counter) { counter = _counter; }
+
+  // checks the expiry on items
+  virtual bool determineExpiry() {
+    if (counter == 3) {
+      expired = true;
+    };
+    counter = counter + 1;
+    return expired;
   }
 };
 

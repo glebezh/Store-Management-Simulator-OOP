@@ -7,11 +7,12 @@ class Apple : public Item {
  public:
   Apple() : Item("Apple", 1.00, 0.75, false, 0) {}
   ~Apple() {}
-  
+
   bool determineExpiry() override {
     if (counter == 3) {
       expired = true;
     }
+    counter = counter + 1;
     return expired;
   }
 };

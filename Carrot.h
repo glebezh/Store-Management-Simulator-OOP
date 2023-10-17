@@ -5,19 +5,18 @@
 
 #include "Item.h"
 // class containing information for Carrot object
-class Carrot : public Item{
-  private:
+class Carrot : public Item {
+ private:
+ public:
+  Carrot() : Item("Carrot", 1.5, 1.25, false, 0){};
+  ~Carrot(){};
 
-  public:
-    Carrot(): Item("Carrot", 1.5, 1.25, false, 0){
+  bool determineExpiry() override {
+    if (counter == 4) {
+      expired = true;
     };
-    ~Carrot(){};
-
-    bool determineExpiry() override{
-      if (counter == 4){
-        expired = true;
-      };
-      return expired;
+    counter = counter + 1;
+    return expired;
   }
 };
 
