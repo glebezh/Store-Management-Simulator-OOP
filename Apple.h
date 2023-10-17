@@ -9,7 +9,7 @@ class Apple : public Item {
   ~Apple() {}
   
   bool determineExpiry() override {
-    if (counter == 3) {
+    if (counter == 1) {
       expired = true;
     }
     return expired;

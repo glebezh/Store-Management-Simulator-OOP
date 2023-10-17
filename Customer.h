@@ -10,19 +10,15 @@
 using namespace std;
 // class containing information for Customer object
 
-std::vector<std::string> products = {"Apple",     "Banana", "Biscuit",
-                                     "Bread",     "Carrot", "Cheese",
-                                     "Chocolate", "Milk",   "Yoghurt"};
-
 class Customer : public Person {
  private:
  //variables for customer
-  double moneySpent = 0;
-  int itemCounter = 0;
-  string wantedItem1 = "";
-  string wantedItem2 = "";
-  string wantedItem3 = "";
-  double rating = 0;
+  double moneySpent;
+  int itemCounter;
+  string wantedItem1;
+  string wantedItem2;
+  string wantedItem3;
+  double rating;
 
  public:
  //constructors
@@ -30,12 +26,15 @@ class Customer : public Person {
     name = "";
     wantedItem1 = "";
     wantedItem2 = "";
-    wantedItem3 = "";  // file:////usr/share/doc/HTML/en-US/index.html
+    wantedItem3 = "";
+    moneySpent = 0;
+    itemCounter = 0;
+    rating = 0; 
   }
   Customer(string _name) : Person(_name) {
-    wantedItem1 = ""; // Randomly generate here
-    wantedItem2 = ""; // and here
-    wantedItem3 = ""; // and here
+    wantedItem1 = "";
+    wantedItem2 = ""; 
+    wantedItem3 = "";
     moneySpent = 0;
     itemCounter = 0;
     rating = 0;

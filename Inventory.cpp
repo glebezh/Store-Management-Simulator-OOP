@@ -15,6 +15,7 @@
 #include "Yoghurt.h"
 
 #include <limits>
+#include "Random.h"
 //code for inventory function
 Inventory::Inventory() { money = 0; }
 
@@ -90,6 +91,8 @@ void Inventory::buyItemProduce() {
       }
     }
 
+    std::cout << std::endl;
+
     // std::cin >> choice;
 
     // while ((choice != 1) && (choice != 0)  ) {
@@ -104,7 +107,7 @@ void Inventory::buyItemProduce() {
 
 
     if (choice == 1) {
-      std::cout << "Money Remaining: $" << money << std::endl;
+      // std::cout << "Money Remaining: $" << money << std::endl;
       std::cout << "Which produce item would you like to buy? \n\n (1) Apples "
                    "(-$0.75)(+$1.00) \n (2) Bananas "
                    "(-$0.90)(+$1.25)\n (3) Carrots (-$1.25)(+$1.50)"
@@ -181,6 +184,8 @@ void Inventory::buyItemDry() {
       }
     }
 
+    std::cout << std::endl;
+
     // std::cin >> choice;
 
 
@@ -193,7 +198,7 @@ void Inventory::buyItemDry() {
     //   std::cin >> choice;
     // }
     if (choice == 1) {
-      std::cout << "Money Remaining: $" << money << std::endl;
+      // std::cout << "Money Remaining: $" << money << std::endl;
       std::cout << "Which dry item would you like to buy? \n\n (1) Biscuit "
                    "(-$0.90)(+$1.25) \n (2) Bread "
                    "(-$0.90)(+$1.25)\n (3) Chocolate (-$1.50)(+$2.25)"
@@ -255,7 +260,6 @@ void Inventory::buyItemDairy() {
     std::cout << "Do you wish to buy Dairy (Cheese, Milk or Yoghurt)?"
               << std::endl;
     std::cout << "Enter 1 for Yes or 0 for No" << std::endl;
-    std::cout << std::endl;
 
     //input validation
     while (true) {
@@ -268,6 +272,7 @@ void Inventory::buyItemDairy() {
         std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
       }
     }
+    std::cout << std::endl;
     // std::cin >> choice;
     // while ((choice != 1) && (choice != 0)) {
     //   std::cout << "Please enter a valid number" << std::endl;
@@ -279,7 +284,7 @@ void Inventory::buyItemDairy() {
     // }
 
     if (choice == 1) {
-      std::cout << "Money Remaining: $" << money << std::endl;
+      // std::cout << "Money Remaining: $" << money << std::endl;
       std::cout << "Which dairy item would you like to buy? \n\n (1) Cheese "
                    "(-$1.75)(+$2.00) \n (2) Milk "
                    "(-$1.75)(+$2.25)\n (3) Yoghurt (-$1.50)(+$2.50)"
@@ -348,8 +353,9 @@ void Inventory::showdairyItems() {
 }
 //expiry checkers
 int Inventory::checkProduceExpiry() {
-  int counter = 0;
+  int expired_items = 0;
   for (int i = produceCounter - 1; i >= 0; i--) {
+    produceItems[i]->setCounter(produceItems[i]->getCounter()+1);
     produceItems[i]->determineExpiry();
     if (produceItems[i]->getExpired() == true) {
       delete produceItems[i];
@@ -357,15 +363,16 @@ int Inventory::checkProduceExpiry() {
       std::swap(produceItems[i], produceItems[produceCounter - 1]);
       produceItems.pop_back();
       produceCounter--;
-      counter = counter + 1;
+      expired_items = expired_items + 1;
     }
   };
-  return counter;
+  return expired_items;
 }
 
 int Inventory::checkDryExpiry() {
-  int counter = 0;
+  int expired_items = 0;
   for (int i = dryCounter - 1; i >= 0; i--) {
+    dryItems[i]->setCounter(dryItems[i]->getCounter()+1);
     dryItems[i]->determineExpiry();
     if (dryItems[i]->getExpired() == true) {
       delete dryItems[i];
@@ -373,35 +380,36 @@ int Inventory::checkDryExpiry() {
       std::swap(dryItems[i], dryItems[dryCounter - 1]);
       dryItems.pop_back();
       dryCounter--;
-      counter = counter + 1;
+      expired_items = expired_items + 1;
     }
   };
-  return counter;
+  return expired_items;
 }
 
 int Inventory::checkDairyExpiry() {
-  int counter = 0;
+  int expired_items = 0;
   for (int i = dairyCounter - 1; i >= 0; i--) {
     dairyItems[i]->determineExpiry();
+    dairyItems[i]->setCounter(dairyItems[i]->getCounter()+1);
     if (dairyItems[i]->getExpired() == true) {
       delete dairyItems[i];
       dairyItems[i] = nullptr;
       std::swap(dairyItems[i], dairyItems[dairyCounter - 1]);
       dairyItems.pop_back();
       dairyCounter--;
-
-      counter = counter + 1;
+      expired_items = expired_items + 1;
     }
   };
-  return counter;
+  return expired_items;
 }
+
 //add employee functions
 void Inventory::hireEmployee() {
   int choice = 1;
   while (choice == 1) {
     std::cout << "Money Remaining: $" << money << std::endl;
     std::cout << "Do you wish to hire an Employee?" << std::endl;
-    std::cout << "(-$20.00 per day) (+$2.00 per customer)" << std::endl;
+    std::cout << "(-$10.00 per day) (+$2.00 per customer)" << std::endl;
     std::cout << "Enter 1 for Yes 0 for No" << std::endl;
 
     while (true) {
@@ -414,7 +422,7 @@ void Inventory::hireEmployee() {
         std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
       }
     }
-    
+
     if (choice == 1) {
       if (money - wage < 0) {
         std::cout << "You do not have enough money to hire an employee"
@@ -423,7 +431,7 @@ void Inventory::hireEmployee() {
       }
       employeeCounter++;
       Employee employee;
-      money = money - wage; // do we want to dynamically allocate here to eliminate the variable wage?
+      money = money - wage;
       employee.setName();
       std::cout << employee.getName() << " was hired" << std::endl;
     }

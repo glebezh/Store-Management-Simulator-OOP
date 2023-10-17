@@ -20,7 +20,7 @@ class Item {
   Item(string _name, double _sellPrice, double _purchasePrice, bool _expired,
        int _counter);
   ~Item(){};
-  //get functions
+  //get and set functions
   string getName() { return name; }
   double getSellPrice() { return sellPrice; }
   double getPurchasePrice() { return purchasePrice; }

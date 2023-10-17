@@ -61,6 +61,7 @@ int main() {
     std::cout << "Please enter your store name:" << std::endl;
     std::cin >> storeName;
   };
+  std::cout << std::endl;
 //inventory creation
   Inventory hold(totalMoney);
   if (save == 1) {
@@ -104,12 +105,26 @@ int main() {
     hold.hireEmployee();
     std::cout << "" << std::endl;
     std::cout << "Enter 0 to start the day" << std::endl;
-    std::cin >> random;
-    if (random != 0) {
-      std::cout << "Please enter a valid number" << std::endl;
-      std::cout << "Enter 0 to start the day" << std::endl;
-      std::cin >> random;
+    // std::cin >> random;
+
+    while (true) {
+        std::cin >> random;
+        if (std::cin.good() && (random == 0)) {
+            break;
+        } else {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+            std::cout << "Please enter a valid value." << std::endl;
+        }
     }
+
+    // if (random != 0) {
+    //   std::cout << "Please enter a valid number" << std::endl;
+    //   std::cout << "Enter 0 to start the day" << std::endl;
+    //   std::cin >> random;
+    // }
+
+    std::cout << std::endl;
 
     for (int i = 0; i < numCustomers; i++) {
       Customer customer;
@@ -141,15 +156,19 @@ int main() {
 
       hold.setMoney(hold.getMoney()+customer.getMoneySpent());
     //   totalMoney = totalMoney + customer.getMoneySpent();
-      hold.setMoney(hold.getMoney()+(hold.getEmployeeCount() * numCustomers * 2));
     //   totalMoney = totalMoney + (hold.getEmployeeCount() * numCustomers * 2);
 
-      std::cout << customer.getName() << " "
+      std::cout << customer.getName() << ""
                 << " bought " << customer.itemsBought() << " items"
                 << std::endl;
 
       rating = customer.setRating(rating);
     };
+
+    hold.setMoney(hold.getMoney()+(hold.getEmployeeCount() * numCustomers * 2));
+
+    std::cout << std::endl;
+
     std::cout << hold.checkProduceExpiry() << " Produce Items have Expired"
               << std::endl;
     std::cout << hold.checkDryExpiry() << " Dry Items have Expired"
@@ -160,23 +179,36 @@ int main() {
     std::cout << "" << std::endl;
     std::cout << "Current Money:" << hold.getMoney() << std::endl;
 
-    rating = rating + (hold.getEmployeeCount() * 0.2);
+    rating = roundToNDecimalPlaces(rating + (hold.getEmployeeCount() * 0.2), 2);
 
-    std::cout << "Current Rating:" << rating << std::endl;
+    std::cout << "Current Rating:" <<  rating << std::endl;
     std::cout << "" << std::endl;
 
     std::cout << "You have Finished Day " << dayCounter << std::endl;
+    std::cout << std::endl;
     std::cout << "Enter 0 to Continue" << std::endl;
-    std::cin >> choice;
+    // std::cin >> choice;
 
-    if (choice != 0) {
-      std::cout << "Please enter a valid number" << std::endl;
-      std::cout << "Enter 0 to Continue" << std::endl;
-      std::cin >> choice;
+    while (true) {
+        std::cin >> choice;
+        if (std::cin.good() && (choice == 0)) {
+            break;
+        } else {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+            std::cout << "Please enter a valid value." << std::endl;
+        }
     }
 
+    // if (choice != 0) {
+    //   std::cout << "Please enter a valid number" << std::endl;
+    //   std::cout << "Enter 0 to Continue" << std::endl;
+    //   std::cin >> choice;
+    // }
+
+    std::cout << std::endl;
     dayCounter = dayCounter + 1;
-    hold.resetEmployee();
+    hold.resetEmployee(); //reset employees each day?
 
     std::cout << "Do you want to save now?" << std::endl;
     std::cout << "Yes (1) or No (0)" << std::endl;

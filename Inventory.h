@@ -19,7 +19,7 @@ class Inventory {
   int dryCounter = 0;
   int dairyCounter = 0;
   int employeeCounter = 0;
-  int wage = 20;
+  int wage = 10;
 
  public:
   // Constructors

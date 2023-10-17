@@ -17,8 +17,8 @@ class Employee : public Person {
  //constructors
   Employee(){};
   Employee(string _name):Person(_name){
-     wageCost = generateRandom(2,6);
-     tipCost = generateRandom(0,3);
+     wageCost = 10;
+     tipCost = 2;
   };
   //get functions
   double getWage() { return wageCost; };
