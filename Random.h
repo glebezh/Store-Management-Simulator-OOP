@@ -27,30 +27,30 @@ inline double roundToNDecimalPlaces(double number, int decimalPlaces) {
 #endif
 
 
-inline void getValidInput(int variable, std::string prompt) {
-    while (true) {
-        std::cin >> variable;
-         if (std::cin.good() && (variable == 0 || variable == 1)) {
-            break; 
-        } else {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Please enter a valid value." << std::endl;
-        }
-    }
-}
+// inline void getValidInput(int variable, std::string prompt) {
+//     while (true) {
+//         std::cin >> variable;
+//          if (std::cin.good() && (variable == 0 || variable == 1)) {
+//             break; 
+//         } else {
+//             std::cin.clear();
+//             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+//             std::cout << "Please enter a valid value." << std::endl;
+//         }
+//     }
+// }
 
 
-    while (true) {
-      std::cin >> choice;
-      if (std::cin.good() && (choice == 0 || choice == 1)) {
-        break;
-      } else {
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<int>::max(), '\n');
-        std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
-      }
-    }
+//     while (true) {
+//       std::cin >> choice;
+//       if (std::cin.good() && (choice == 0 || choice == 1)) {
+//         break;
+//       } else {
+//         std::cin.clear();
+//         std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+//         std::cout << "Please enter a valid number (1 for Yes, 0 for No)" << std::endl;
+//       }
+//     }
 
 
  
